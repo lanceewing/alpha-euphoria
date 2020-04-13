@@ -1,0 +1,427 @@
+@font-face{
+  font-family:"space-age-regular";
+  src:url("space-age.spaceage.otf") format("woff"),
+  url("space-age.spaceage.otf") format("opentype"),
+  url("space-age.regular.ttf") format("truetype");
+}
+* {  
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  -o-user-select: none;       /* Opera */
+  user-select: none;          /* Likely future */
+}
+body {
+  background: #0c161d;
+  color: #88776a;
+  font-family: courier new;
+  font-size: 24px;
+  overflow:hidden;
+  scrollbar-width: none;
+  cursor: crosshair;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+span {
+  display: inline-block;
+}
+#overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1000;
+  display: none;
+}
+.door {
+  background-image: linear-gradient(#000 75%, #222);
+  border-top-left-radius: 90px;
+  border-top-right-radius: 90px;
+  height: 158px;
+  width: 100px;
+  z-index: 15;
+  top: 97px;
+  box-shadow: #1f1f1f 0px 0px 3px 4px;
+  perspective: 350px;
+  overflow: hidden;
+  display: none;
+}
+.door .green {
+  background-color: rgba(5, 31, 1, 0.98);
+  box-shadow: inset #001306 0px 0px 3px 4px;
+  background-image: linear-gradient(90deg, transparent 97%, rgba(25, 49, 21, 0.98) 97%);
+}
+.door .red {
+  background-color: rgba(64, 11, 11, 0.98);
+  box-shadow: inset #250307 0px 0px 3px 4px;
+  background-image: linear-gradient(90deg, transparent 97%, rgba(86, 33, 33, 0.98) 97%);
+}
+.door .black {
+  background-color: rgba(0, 0, 0, 0.98);
+  box-shadow: inset #2b2b2b 0px 0px 3px 4px;
+  background-image: linear-gradient(90deg, transparent 97%, rgba(45, 45, 45, 0.98) 97%);
+}
+.inside .door {
+  background-image: linear-gradient(rgba(173, 158, 123, 0.13) 80%, rgba(17, 17, 17, 0.2) 20%);
+  background-color: rgba(255, 255, 255, 0.27);
+}
+.door div {
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+  transform-origin: right center;
+  width: 100%;
+  height: 100%;
+  z-index: 16;
+  border-top-left-radius: 90px;
+  border-top-right-radius: 90px;
+  background-size: 21px 50px;
+}
+#status {
+	background-color: #fff;
+	color: #000;
+  height: 27px;
+  font-size: 20px;
+  font-family: "space-age-regular";
+  box-shadow: none;
+  border-radius: 0px;
+}
+#sentence {
+  width: 960px;
+  height: 33px;
+  text-align: center;
+  line-height: 33px;
+  color: white;
+}
+#controls {
+  width: 960px;
+  height: 138px;
+  z-index: 1;
+}
+#controls span:hover {
+  color: hsl(210, 100%, 40%);
+  text-shadow: hsla(210,100%,20%,.3) 0 -1px 0, hsl(210,100%,85%) 0 2px 1px, hsla(200,100%,80%,1) 0 0 5px, hsla(210,100%,50%,.6) 0 0 20px;
+}
+#controls div {
+  float: left;
+}
+#arrows {
+  width: 42px;
+}
+#arrows span {
+  font-size: 45px;
+  height: 67px;
+  width: 40px;
+  line-height: 72px;
+  text-align: center;
+  background-color: #2d2022;
+  margin: 1px;
+}
+#items {
+  width: 308px;
+  height: 136px;
+  background-color: #2d2022;;
+  margin: 1px;
+  overflow: hidden;
+  position: relative;
+}
+#itemlist {
+  position: absolute;
+  left: 0px;
+  padding: 2px 4px 2px 4px;
+}
+#itemlist span {
+  width: 300px;
+}
+#commands {
+  width: 608px;
+  font-size: 17px;
+  font-family: "space-age-regular";
+}
+#commands span {
+  background-color: #2d2022;
+  width: 150px;
+  margin: 1px;
+  height: 44px;
+  text-align: center;
+  line-height: 40px;
+}
+#wrap {
+  background-color: #000;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 960px;
+  height: 627px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+#screen {
+  position: relative;
+  height: 430px;
+  overflow: hidden;
+  /*background-color: black;*/
+}
+#screen * {
+  position: absolute;
+}
+.wall {
+  top: 50px;
+  width: 1920px;
+  height: 209px;
+  z-index: 5;
+  background-color: #6b6f6c;
+
+  clip-path: polygon( 
+    0 0, 1920px 0, 1920px 209px, 0 209px, 
+    0 0, 
+    30px 30px, 30px 150px, 270px 150px, 270px 30px, 
+    400px 30px, 400px 150px, 640px 150px, 640px 30px, 
+    30px 30px );
+}
+.bricks {
+  background-image: 
+    linear-gradient(335deg, rgba(80, 80, 80, 0.2) 23px, transparent 23px),
+    linear-gradient(155deg, rgba(88, 88, 88, 0.3) 23px, transparent 23px),
+    linear-gradient(335deg, rgba(80, 80, 80, 0.2) 23px, transparent 23px),
+    linear-gradient(155deg, rgba(88, 88, 88, 0.3) 23px, transparent 23px);
+  background-size: 58px 58px;	
+  background-position: 0px 2px, 4px 35px, 29px 31px, 34px 6px;
+}
+.outside #wall {
+  top: -8px;
+  height: 263px;
+}
+#wall.left {
+  left: 100px;
+}
+#wall.leftright {
+  left: 100px;
+  width: 758px;
+}
+#wall.right {
+  width: 860px;
+}
+#wall {
+  top: 0px;
+  height: 259px;
+  width: 960px;
+  z-index: 0;
+}
+.left.path {
+  left: 0px;
+  width: 0;
+  height: 0;
+  top: 130px;
+  border-top: 125px solid rgba(0, 0, 0, 0.3);
+  border-right: 100px solid transparent;
+}
+.right.path {
+  left: 860px;
+  width: 0;
+  height: 0;
+  top: 130px;
+  border-top: 125px solid rgba(0, 0, 0, 0.3);
+  border-left: 100px solid transparent;
+}
+.path {
+  width: 100px;
+  height: 255px;
+  top: 0px;
+  z-index: 10;
+}
+#sides {
+	top: 0px;
+	left: -50px;
+	height: 430px;
+  width: 1060px;
+	border-top-right-radius: 60px;
+	border-top-left-radius: 60px;
+	z-index: 720;
+  pointer-events: none;
+  box-shadow: #000 -100px 0 0px 40px inset, #000 100px 0 0px 40px inset;
+}
+.outside #sides {
+  display: none;
+}
+.bubble {
+  font-size: smaller;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-weight: bold;
+  padding: 15px;
+  color: black;
+  background: white;
+  border-radius: 20px;
+  bottom: 170px;
+  border: 2px solid black;
+  box-shadow: 6px 3px black;
+}
+.speech:before {
+  z-index: 1;
+  content: "";
+  display: block;
+  position: absolute;
+  top: -29px;
+  left: 9px;
+  width: 15px;
+  height: 15px;
+  transform: rotate(45deg);
+  background-color: white;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  box-shadow: 5px 1px black;
+}
+.sprite {
+  /* Hack for Chrome, so that doors are not drawn on top of other sprites. */
+  transform: rotateY(0deg);
+}
+.actor:after, .ghost:after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0px;
+  width: 50px;
+  height: 10px;
+  background: #000;
+  border-radius: 50%;
+  opacity: 0.5;
+}
+.ghost {
+  opacity: 0.3;
+  transform: rotateY(0deg);
+  display: block;
+}
+.green, .green.key::before, .green.key::after  {
+  background-color: #146b07
+}
+.black, .black.key::before, .black.key::after {
+  background-color: black;
+}
+.key::before {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  top: -2px;
+  left: -4px;
+  border-radius: 4px;
+}
+.key::after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  width: 6px;
+  height: 5px;
+  top: 0px;
+  left: 17px;
+}
+#light_beam {
+  content: "";
+  position: absolute;
+  transition: all 0.4s;
+  transform: translateX(-50%) perspective(400px) rotateX(45deg);
+  transform-origin: top center;
+  background: linear-gradient(0deg, transparent, rgba(255, 255, 255, 0.2));
+}
+#msg {
+  z-index: 1500;
+  height: 33px;
+  font-size: 50px;
+  margin-top: -25px;
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  animation: blinker 1.5s linear infinite;
+  color: white;
+}
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+#time_machine {
+  background-color: #363f5f;
+  border: 2px solid black;
+  border-radius: 100px / 50px;
+  box-shadow: inset #001306 0px -1px 4px 2px, #7a7f5e 0px -3px 7px -1px;
+}
+#backpack {
+  border: 2px solid black;
+  background-color: rgb(20, 30, 20);
+  background-image: linear-gradient(0deg, transparent 60%, #2a332afa 60%);
+}
+.metal, .wall.outer {
+  color: hsla(0,0%,20%,1);
+  text-shadow: hsla(0,0%,40%,.5) 0 -1px 0, hsla(0,0%,100%,.6) 0 2px 1px;
+  background-color: hsl(0,0%,90%);
+  box-shadow: inset hsla(0,0%,15%,  1) 0  0px 0px 4px, /* border */
+    inset hsla(0,0%,15%, .8) 0 -1px 5px 4px, /* soft SD */
+    inset hsla(0,0%,0%, .25) 0 -1px 0px 7px, /* bottom SD */
+    inset hsla(0,0%,100%,.7) 0  2px 1px 7px, /* top HL */
+    hsla(0,0%, 0%,.15) 0 -5px 6px 4px; /* outer SD */
+  transition: color .2s;
+  background-size: 150px;
+  border-radius: .5em;
+  background-image: -webkit-repeating-linear-gradient(left, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0)   6%, hsla(0,0%,100%, .1) 7.5%),
+    -webkit-repeating-linear-gradient(left, hsla(0,0%,  0%,0) 0%, hsla(0,0%,  0%,0)   4%, hsla(0,0%,  0%,.03) 4.5%),
+    -webkit-repeating-linear-gradient(left, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 1.2%, hsla(0,0%,100%,.15) 2.2%),
+    linear-gradient(180deg, hsl(0,0%,78%)  0%, 
+    hsl(0,0%,90%) 47%, 
+    hsl(0,0%,78%) 53%,
+    hsl(0,0%,70%)100%);
+/* NICE GOLD BUTTON *//*
+    background-image: -webkit-repeating-linear-gradient(left, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 6%, hsla(0,0%,100%, .1) 7.5%), -webkit-repeating-linear-gradient(left, hsla(0,0%, 0%,0) 0%, hsla(0,0%, 0%,0) 4%, hsla(0,0%, 0%,.03) 4.5%), -webkit-repeating-linear-gradient(left, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 1.2%, hsla(0,0%,100%,.15) 2.2%), linear-gradient(180deg, hsl(43, 57%, 63%) 0%, hsl(44, 31%, 49%) 47%, hsl(49, 57%, 76%) 53%, hsl(0,0%,70%)100%);
+*/
+}
+#space {
+  position: fixed;
+  top: 27px;
+  left: 0px;
+  height: 430px;
+  width: 960px;
+  z-index: 0;
+  overflow: hidden;
+}
+#planet {
+  width: 400px;
+  height: 400px;
+  position: relative;
+  margin: auto;
+  transform:  scale3d(2, 2, 1) rotateZ(-15deg) translate(105px, 25px);
+}
+.rings {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, rgba(24,19,25,0) 0%,rgba(53,52,51,0) 34%,rgba(55,54,52,1) 36%,rgba(56,55,53,1) 37%,rgba(68,67,66,1) 38%,rgba(56,55,53,1) 39%,rgba(68,67,66,1) 40%,rgba(56,55,53,1) 41%,rgba(87,77,76,1) 42%,rgba(87,77,76,1) 44%,rgba(113,110,103,1) 46%,rgba(113,110,103,1) 48%,rgb(14, 117, 98) 49%,rgba(113,98,93,1) 51%,rgb(37, 118, 191) 52%,rgb(32, 149, 160) 53%,rgb(22, 132, 28) 54%,rgb(174, 215, 236) 55%,rgb(46, 76, 128) 56%,rgb(185, 212, 214) 58%,rgba(79,76,76,0) 60%,rgba(65,64,70,1) 61%,rgba(65,64,70,1) 62%,rgb(170, 192, 202) 63%,rgba(78,74,73,1) 65%,rgba(78,73,74,1) 67%,rgba(78,73,74,0) 68%,rgb(22, 169, 145) 69%,rgba(78,73,75,1) 70%,rgba(78,73,76,0) 71%,rgba(77,72,76,0) 72%,rgba(24,19,25,0) 100%);
+  transform: rotateX(75deg);
+}
+.planet {
+  background: green;
+  width: 180px;
+  height: 180px;
+  position: absolute;
+  top: 110px;
+  left: 110px;
+  border-radius: 50%;
+}
+.top {
+  clip: rect(0px, 180px, 92px, 0px);
+}
+.bottom {
+  clip: rect(90px, 180px, 180px, 0px);
+}
+.planet-bg {
+  background: radial-gradient(
+      circle at top,
+      rgba(0,0,0,0) 0%,
+      rgba(0,0,0,0) 40%,
+      rgba(0,0,0,1) 100%), 
+     radial-gradient(ellipse at center, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 62%,rgba(0,0,0,1) 100%), 
+     linear-gradient(#99E8EC, #19BDBA, #99E8EC, #19BDBA, #99E8EC);
+}

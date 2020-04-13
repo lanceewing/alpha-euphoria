@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Alpha Euphoria</title>
+    <link rel="shortcut icon" id="favicon" />
+    <link rel="stylesheet" type="text/css" href="game.css">
+    <meta name="viewport" content="user-scalable=no">
+    <meta charset="utf-8"/>
+  </head>
+  <body>
+    <div id="msg">Click to start</div>
+    <div id="wrap">
+      <div id="overlay"></div>
+
+      <div id="status" class="metal">
+        <span style="width:115px;">&nbsp;Score:</span>
+        <span style="width:210px;" id="score">0 of 250</span>
+        <span style="width:300px;text-align:center;">Alpha Euphoria</span>
+        <span style="padding-left:220px;" id="time">59:59</span>
+      </div>
+
+      <div id="screen" class="inside">
+
+        <div id="space">
+          <div id="planet">
+            <div class="planet bottom planet-bg"></div>
+            <div class="rings"></div>
+            <div class="planet top planet-bg"></div>
+          </div>
+        </div>
+
+        <div class="outer wall"></div>
+      </div>
+
+      <div id="sentence">Walk to</div>
+
+      <div id="controls">
+	      <div id="commands">
+	        <span class="metal">Open</span><span class="metal">Pick up</span><span class="metal">Use</span><span class="metal">Put on</span>
+	        <span class="metal">Close</span><span class="metal">Look at</span><span class="metal">Push</span><span class="metal">Take off</span>
+	        <span class="metal">Give</span><span class="metal">Talk to</span><span class="metal">Pull</span><span class="metal">Eat</span>
+	      </div>
+	      <div id="arrows">
+          <span id="up" class="metal">&#8679;</span>
+          <span id="down" class="metal">&#8681;</span>
+        </div>
+        <div id="items" class="metal">
+          <div id="itemlist">
+          </div>
+        </div>
+	    </div>
+    </div>
+    <script src="./opl3.js"></script>
+    <script src="./util.js"></script>
+    <script src="./logic.js"></script>
+    <script src="./obj.js"></script>
+    <script src="./sprite.js"></script>
+    <script src="./actor.js"></script>
+    <script src="./ego.js"></script>
+    <script src="./game.js"></script>
+  </body>
+</html>
