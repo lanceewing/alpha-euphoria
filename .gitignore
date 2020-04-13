@@ -1,0 +1,7 @@
+*.zip
+*.jar
+*.exe
+*.sh
+min*.*
+test*
+songs
