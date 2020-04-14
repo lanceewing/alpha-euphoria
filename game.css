@@ -182,6 +182,39 @@ span {
     400px 30px, 400px 150px, 640px 150px, 640px 30px, 
     30px 30px );
 }
+#ceiling {
+  height: 90px;
+  width: 1920px;
+  z-index: 1;
+  background-image: linear-gradient(rgba(255, 255, 255, .1) 50%, transparent 50%, transparent);
+  top: 0px;
+  left: -300px;
+  background-size: 90px 2px;
+  background-color: #063842;
+  transform: perspective(55px) rotateX(-50deg);
+}
+.window {
+  width: 240px;
+  height: 120px;
+  background-color: blue;
+  left: 30px;
+  top: 30px;
+  box-shadow: hsla(0,0%,15%, 1) 0 0px 0px 4px, /* border */
+    hsla(0,0%,15%, .8) 0 -1px 5px 4px, /* soft SD */
+    hsla(0,0%,0%, .25) 0 -1px 0px 7px, /* bottom SD */
+    hsla(0,0%,100%,.7) 0 2px 1px 7px, /* top HL */
+    hsla(0,0%, 0%,.15) 0 -5px 6px 4px;
+
+    box-shadow: hsla(0,0%,15%, 1) 0 1px 0px 5px, /* border */ hsla(0,0%,15%, .8) 0 -1px 5px 10px, /* soft SD */ hsla(0,0%,0%, .25) 0 -1px 0px 9px, /* bottom SD */ hsla(0,0%,100%,.7) 0 -1px 1px 13px, /* top HL */ hsla(0,0%, 0%,.15) 0 -6px 6px 11px;
+}
+.first.window {
+  left: 30px;
+  top: 30px;
+}
+.second.window {
+  left: 400px;
+  top: 30px;
+}
 .bricks {
   background-image: 
     linear-gradient(335deg, rgba(80, 80, 80, 0.2) 23px, transparent 23px),
@@ -355,7 +388,7 @@ span {
   background-color: rgb(20, 30, 20);
   background-image: linear-gradient(0deg, transparent 60%, #2a332afa 60%);
 }
-.metal, .wall.outer {
+.metal, .wall.outer, #commands span, #arrows span {
   color: hsla(0,0%,20%,1);
   text-shadow: hsla(0,0%,40%,.5) 0 -1px 0, hsla(0,0%,100%,.6) 0 2px 1px;
   background-color: hsl(0,0%,90%);

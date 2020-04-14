@@ -272,9 +272,9 @@ $.Game = {
       this.fadeIn($.msg);
       if (!msg) {
         window.onclick = function(e) {
-          if (document.fullscreenEnabled) {
-            document.documentElement.requestFullscreen();
-          }
+          //if (document.fullscreenEnabled) {
+          //  document.documentElement.requestFullscreen();
+          //}
           $.Game.fadeOut($.msg);
           setTimeout(function() {
             $.msg.style.display = 'none';
@@ -342,7 +342,12 @@ $.Game = {
       this.addActors(200);
 
       // Starting inventory.
-      this.getItem('touch of death');
+      this.getItem('keycard');
+      this.getItem('bottle');
+      this.getItem('wrench');
+      this.getItem('computer manual');
+      this.getItem('rations');
+      this.getItem('plastic bucket');
       
       // Enter the starting room.
       this.newRoom();
