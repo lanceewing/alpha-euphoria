@@ -25,133 +25,14 @@ $.Game = {
     lastRandom: 481731,
 
     /**
-     * Rooms have a region type (see blow), left exit, left path, left door, right door,
-     * right path, right exit, down exit.
-     * 
-     * region type:
-     *  bits 0-2: street/ave number
-     *  bit  3  : 0=street, 1=avenue
-     *  bits 4-6: wall colour
-     *  bit  7  : inside/outside
+     * Rooms have: 0=deck/1=hallway, 0=normal/lower room, left path, right path.
      */
     rooms: [
-      // First block.
-      [0x19,   ,  2,   ,   ,  8,   , 41 ],  // 1
-      [0x11,  3,   ,   ,   ,  1,   , 22 ],  // 2
-      [0x11,  4,   ,   ,   ,   ,  2, 21 ],  // 3
-      [0x11,   ,  5,   ,   ,   ,  3, 20 ],  // 4
-      [0x1B,   ,  6,   ,   ,  4,   , 35 ],  // 5
-      [0x14,  7,   ,   ,   ,  5,   , 31 ],  // 6
-      [0x14,  8,   ,   ,   ,   ,  6,    ],  // 7
-      [0x14,   ,  1,   ,   ,   ,  7, 25 ],  // 8
-      
-      // Second block.
-      [0x29, 10,   ,   ,   , 22,   , 69 ],  // 9
-      [0x29, 11,   ,   ,   ,   ,  9, 68 ],  // 10
-      [0x29, 12,   ,   ,   ,   , 10,    ],  // 11
-      [0x29,   , 13,   ,   ,   , 11, 91 ],  // 12
-      [0x23, 14,   ,   ,   , 12,   , 28 ],  // 13
-      [0x23, 15,   ,   ,   ,   , 13,    ],  // 14
-      [0x23,   , 16,   ,   ,   , 14, 34 ],  // 15
-      [0x2B, 17,   ,   ,   , 15,   , 53 ],  // 16
-      [0x2B, 18,   ,   ,   ,   , 16,    ],  // 17
-      [0x2B, 19,   ,   ,   ,   , 17, 48 ],  // 18
-      [0x2B,   , 20,   ,   ,   , 18, 47 ],  // 19
-      [0x21, 21,   ,   ,   , 19,   ,  4 ],  // 20
-      [0x21, 22,   ,   ,   ,   , 20,  3 ],  // 21
-      [0x21,   ,  9,   ,   ,   , 21,  2 ],  // 22
 
-      // Third block.
-      [0x39, 24,   ,   ,   , 28,   , 89 ],  // 23
-      [0x39,   , 25,   ,   ,   , 23, 88 ],  // 24
-      [0x34,   , 26,   ,   , 24,   ,  8 ],  // 25
-      [0x3A, 27,   ,   ,   , 25,   ,    ],  // 26
-      [0x3A,   , 28,   ,   ,   , 26,    ],  // 27
-      [0x33,   , 23,   ,   , 27,   , 13 ],  // 28
+      [0x00, 0x00,     ,     ],  // 1
+      [0x01, 0x00,     ,     ],  // 2
+      [0x01, 0x01,     ,     ],  // 3
 
-      // Fourth block.
-      [0x4A, 30,   ,   ,   , 34,   ,    ],  // 29 
-      [0x4A,   , 31,   ,   ,   , 29,    ],  // 30 
-      [0x44,   , 32,   ,   , 30,   ,  6 ],  // 31
-      [0x4B, 33,   ,   ,   , 31,   , 58 ],  // 32
-      [0x4B,   , 34,   ,   ,   , 32, 57 ],  // 33
-      [0x43,   , 29,   ,   , 33,   , 15 ],  // 34
-
-      // Fifth block.
-      [0x3B,   , 36,   ,   , 46,   ,  5 ],  // 35
-      [0x31, 37,   ,   ,   , 35,   , 52 ],  // 36
-      [0x31, 38,   ,   ,   ,   , 36,    ],  // 37
-      [0x31, 39,   ,   ,   ,   , 37, 72 ],  // 38
-      [0x31, 40,   ,   ,   ,   , 38, 71 ],  // 39
-      [0x31,   , 41,   , 95,   , 39, 70,   ,   , 'black' ],  // 40
-      [0x39,   , 42, 93,   , 40,   ,  1,   ,   , 'green' ],  // 41
-      [0x34, 43,   ,   ,   , 41,   , 87 ],  // 42
-      [0x34, 44,   ,   ,   ,   , 42,    ],  // 43
-      [0x34, 45,   , 94,   ,   , 43, 77,   , true, 'red'  ],   // 44
-      [0x34, 46,   ,   ,   ,   , 44,    ],  // 45
-      [0x34,   , 35,   ,   ,   , 45, 59 ],  // 46
-
-      // Sixth block
-      [0x4B, 48,   ,   ,   , 52,   , 19 ],  // 47
-      [0x4B,   , 49,   ,   ,   , 47, 18 ],  // 48
-      [0x42,   , 50,   ,   , 48,   , 56 ],  // 49
-      [0x4C, 51,   ,   ,   , 49,   , 64 ],  // 50
-      [0x4C,   , 52,   ,   ,   , 50, 63 ],  // 51
-      [0x41,   , 47,   ,   , 51,   , 36 ],  // 52
-
-      // Seventh block.
-      [0x0B,   , 54,   ,   , 56,   , 16 ],  // 53
-      [0x03,   , 55,   ,   , 53,   , 62 ],  // 54
-      [0x0C,   , 56,   ,   , 54,   , 73 ],  // 55
-      [0x02,   , 53,   ,   , 55,   , 49 ],  // 56
-
-      // Eighth block.
-      [0x1B, 58,   ,   ,   , 62,   , 33 ],  // 57
-      [0x1B,   , 59,   ,   ,   , 57, 32 ],  // 58
-      [0x14,   , 60,   ,   , 58,   , 46 ],  // 59
-      [0x1C, 61,   ,   ,   , 59,   , 76 ],  // 60
-      [0x1C,   , 62,   ,   ,   , 60, 75 ],  // 61
-      [0x13,   , 57,   ,   , 61,   , 54 ],  // 62
-
-      // Ninth block
-      [0x2C, 64,   ,   ,   , 72,   , 51 ],  // 63
-      [0x2C,   , 65,   ,   ,   , 63, 50 ],  // 64
-      [0x22, 66,   ,   ,   , 64,   , 82 ],  // 65
-      [0x22, 67,   ,   ,   ,   , 65,    ],  // 66
-      [0x22,   , 68,   ,   ,   , 66, 92 ],  // 67
-      [0x29, 69,   ,   ,   , 67,   , 10 ],  // 68
-      [0x29,   , 70,   ,   ,   , 68,  9 ],  // 69
-      [0x21, 71,   ,   ,   , 69,   , 40 ],  // 70
-      [0x21, 72,   ,   ,   ,   , 70, 39 ],  // 71
-      [0x21,   , 63,   ,   ,   , 71, 38 ],  // 72
-
-      // Tenth block.
-      [0x3C, 74,   ,   ,   , 82,   , 55 ],  // 73
-      [0x3C, 75,   ,   ,   ,   , 73,    ],  // 74
-      [0x3C, 76,   ,   ,   ,   , 74, 61 ],  // 75
-      [0x3C,   , 77,   ,   ,   , 75, 60 ],  // 76
-      [0x34,   , 78,   ,   , 76,   , 44 ],  // 77
-      [0x3D, 79,   ,   ,   , 77,   , 86 ],  // 78
-      [0x3D, 80,   ,   ,   ,   , 78, 85 ],  // 79
-      [0x3D, 81,   ,   ,   ,   , 79, 84 ],  // 80
-      [0x3D,   , 82,   ,   ,   , 80, 83 ],  // 81
-      [0x32,   , 73,   ,   , 81,   , 65 ],  // 82
-
-      // Eleventh block.
-      [0x0D, 84,   ,   ,   , 92,   , 81 ],  // 83
-      [0x0D, 85,   ,   ,   ,   , 83, 80 ],  // 84
-      [0x0D, 86,   ,   ,   ,   , 84, 79 ],  // 85
-      [0x0D,   , 87,   ,   ,   , 85, 78 ],  // 86
-      [0x04,   , 88,   ,   , 86,   , 42 ],  // 87
-      [0x09, 89,   ,   ,   , 87,   , 24 ],  // 88
-      [0x09, 90,   ,   ,   ,   , 88, 23 ],  // 89
-      [0x09, 91,   ,   ,   ,   , 89,    ],  // 90
-      [0x09,   , 92,   ,   ,   , 90, 12 ],  // 91
-      [0x02,   , 83,   ,   , 91,   , 67 ],  // 92
-
-      // Inside rooms.
-      [0x80,   ,   ,   , 41,   ,   ,    ,   ,    , 'green' ],  // 93
-      [0x80,   ,   ,   , 44,   ,   ,    ,   , true, 'red' ],   // 94
     ],
 
     /*
@@ -331,7 +212,7 @@ $.Game = {
       
       // Set the room back to the start, and clear the object map.
       this.objs = [];
-      this.room = 41;
+      this.room = 1;
       
       // Create Ego (the main character) and add it to the screen.
       $.ego = new Ego();
@@ -339,6 +220,7 @@ $.Game = {
       $.ego.setPosition(500, 0, 600);
 
       // Add actors into the rooms.
+      // TODO: Change this to handle crew???
       this.addActors(200);
 
       // Starting inventory.
@@ -531,8 +413,7 @@ $.Game = {
     },
     
     /**
-     * Adds actors to the game. During the game, actors can be either a normal
-     * person, a zombie, or a ghost.
+     * Adds actors to the game.
      */
     addActors: function(numOfActors) {
       // Initialise actors for each outside room.
@@ -544,9 +425,9 @@ $.Game = {
         this.actors[this.random(92)].push(null);
       }
 
-      // No ghosts in starting room.
-      this.actors[41] = [];
-      this.actors[40] = [];
+      // No actors in starting rooms.
+      this.actors[1] = [];
+      this.actors[2] = [];
     },
 
     /**
@@ -581,10 +462,9 @@ $.Game = {
 
       $.roomData = this.rooms[this.room - 1];
       
-      //$.inside = ($.roomData[0] & 0x80);
-      //$.screen.className = ($.inside? 'inside ' : 'outside ');
-
-      // TODO: Do something similar to above but with deck vs hallway
+      let inHall = ($.roomData[0] & 0x01);
+      let onDeck = !inHall;
+      $.screen.className = (onDeck? 'deck ' : 'hallway ');
 
       // Add props
       for (let i=0; i<this.props.length; i++) {
@@ -621,10 +501,6 @@ $.Game = {
       $.Game.fadeIn($.screen);
       $.ego.show();
       $.Game.fadeIn($.ego.elem);
-    },
-    
-    nth: function(n) { 
-      return["st","nd","rd"][((n+90)%100-10)%10-1]||"th";
     },
 
     /**

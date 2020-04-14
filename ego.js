@@ -10,6 +10,7 @@ class Ego extends Actor {
         super(50, 150, 'grey', 0.95, 5, 'white', 'grey', 'red');//'rgb(20, 30, 20)');
         this.elem.classList.add('ego');
         this.elem.id = 'me';
+        // TODO: Use this for walking around the level in a square. Left/right paths at end of scrolls.
         this.nesw = 2;
         this.setDirection(Sprite.OUT);
     }

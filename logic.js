@@ -37,7 +37,7 @@ $.Logic = {
       case 'Walk to':
         switch (thing) {
           case 'door':
-            //$.Game.userInput = false;
+            $.Game.userInput = false;
             $.ego.stop();
             // Walk to be in front of the door
             $.ego.moveTo(e.target.offsetLeft + (e.target.offsetWidth / 2), $.ego.z);
