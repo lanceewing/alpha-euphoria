@@ -37,34 +37,14 @@ $.Logic = {
       case 'Walk to':
         switch (thing) {
           case 'door':
-            if ($.roomData[8]) {
-              $.ego.moveTo($.activeDoor.offsetLeft + ($.activeDoor.offsetWidth / 2), $.ego.z, function() {
-                if (!$.inside) {
-                  $.activeDoor.children[0].style.transform = "rotateY(-120deg)";
-
-                  if ($.Game.room == 40) {
-                    // Black door, so game over.
-                    $.ego.say("I see myself inside, and have told him to stay inside.", 250, function() {
-                      $.Game.addToScore(15);
-                      $.ego.say("He has agreed. Now no-one will catch The Death.", 250, function () {
-                        for (let i=0; i<$.Game.objs.length; i++) {
-                          $.Game.objs[i].remove();
-                        }
-                        $.Game.objs = [];
-                        $.wrap.style.cursor = 'crosshair';
-                        $.Game.fadeOut($.wrap);
-                        $.Game.gameOver("Well done!!");
-                      });
-                    });
-                  }
-                }
-              });
-              if ($.Game.room != 40) {
-                $.ego.moveTo($.activeDoor.offsetLeft + ($.activeDoor.offsetWidth / 2), $.activeDoor.offsetTop);
-              }
-            } else {
-              $.ego.say("The door is closed.", 220);
-            }
+            //$.Game.userInput = false;
+            $.ego.stop();
+            // Walk to be in front of the door
+            $.ego.moveTo(e.target.offsetLeft + (e.target.offsetWidth / 2), $.ego.z);
+            // Now walk through the door.
+            $.ego.moveTo(
+              e.target.offsetLeft + (e.target.offsetWidth / 2), 
+              (e.target.classList.contains('lower')? 1000 : 500));
             break;
 
           case 'left path':

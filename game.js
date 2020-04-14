@@ -581,8 +581,10 @@ $.Game = {
 
       $.roomData = this.rooms[this.room - 1];
       
-      $.inside = ($.roomData[0] & 0x80);
-      $.screen.className = ($.inside? 'inside ' : 'outside ');
+      //$.inside = ($.roomData[0] & 0x80);
+      //$.screen.className = ($.inside? 'inside ' : 'outside ');
+
+      // TODO: Do something similar to above but with deck vs hallway
 
       // Add props
       for (let i=0; i<this.props.length; i++) {

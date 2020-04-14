@@ -173,6 +173,8 @@ span {
   height: 209px;
   z-index: 5;
   background-color: #6b6f6c;
+}
+.deck .wall {
   clip-path: polygon( 
     0 0, 1920px 0, 1920px 209px, 0 209px, 
     0 0, 
@@ -190,6 +192,37 @@ span {
   background-size: 90px 2px;
   background-color: #063842;
   transform: perspective(55px) rotateX(-50deg);
+}
+.light {
+  top: 18px;
+  left: 140px;
+}
+.light:before {
+  content: "";
+  position: absolute;
+  height: 15px;
+  width: 80px;
+  border-radius: 50%;
+  background: lightgray;
+  transform: translateX(-50%);
+  z-index: 10;
+  border: 2px solid dimgray;
+  border-bottom: none;
+  border-top: 3px solid #222;
+  box-shadow: 0 0 1vh 0.5vh #c0e0fc, 0 0 2vh 1vh #c0e0fc, 0 0 5vh 1vh #90c8f9, 0 0 10vh 1vh #77bcf8, 0 0 15vh 1vh #5FB0F7, 0 0 20vh 1vh #5FB0F7, 0 0 25vh 1vh #5FB0F7, 0 0 50vh 1vh #5FB0F7;
+}
+.light:after {
+  content: "";
+  position: absolute;
+  transition: all 0.4s;
+  height: 250px;
+  width: 80px;
+  top: 7px;
+  left: 50%;
+  transform: translateX(-50%) perspective(400px) rotateX(45deg);
+  transform-origin: top center;
+  background: linear-gradient(0deg, transparent, rgba(255, 255, 255, 0.8));
+  z-index: 8;
 }
 .floor {
   bottom: 90px;
