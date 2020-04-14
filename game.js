@@ -401,6 +401,9 @@ $.Game = {
       // Game has focus and is not paused, so execute normal game loop, which is
       // to update all objects on the screen.
       this.updateObjects();
+
+      // Small hack to account for the rotation of the planet. Not required in Firefox.
+      $.space.style.zIndex = -1;
       
       let wallX = $.ego.x - (960 / 2);
       if (wallX < 0) wallX = 0;
@@ -685,14 +688,13 @@ $.Game = {
       // It is important that we don't use addEventListener in this case. We need to overwrite
       // the event handler on entering each room.
       elem.onmouseenter = function(e) {
-        $.Game.thing = (e.target.id? e.target.id.replace('_',' ') : e.target.className);
+        $.Game.thing = (e.target.dataset.name? e.target.dataset.name : (e.target.id? e.target.id.replace('_',' ') : e.target.className));
       };
       elem.onmouseleave = function(e) {
         $.Game.thing = '';
       };
       elem.onclick = function(e) {
-        let fallback = (!e.target.className || e.target.parentElement.className == 'door');
-        $.Game.thing = (e.target.id? e.target.id.replace('_',' ') : (fallback? e.target.parentElement.className: e.target.className));
+        $.Game.thing = (e.target.dataset.name? e.target.dataset.name : (e.target.id? e.target.id.replace('_',' ') : e.target.className));
         $.Game.processCommand(e);
       };
     },
