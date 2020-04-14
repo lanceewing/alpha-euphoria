@@ -72,9 +72,9 @@ $.Logic = {
             $.ego.stop(true);
             var z = ((e.pageY / $.scaleY) - 27) * 2;
             if (z > 530) {
-              $.ego.moveTo((e.pageX / $.scaleX), ((e.pageY / $.scaleY) - 27) * 2);
+              $.ego.moveTo($.screenLeft + (e.pageX / $.scaleX), ((e.pageY / $.scaleY) - 27) * 2);
             } else {
-              $.ego.moveTo((e.pageX / $.scaleX), 600);
+              $.ego.moveTo($.screenLeft + (e.pageX / $.scaleX), 600);
             }
             break;
         }

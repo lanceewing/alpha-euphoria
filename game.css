@@ -163,6 +163,7 @@ span {
   position: relative;
   height: 430px;
   z-index: -2;
+  width: 1920px;
 }
 #screen * {
   position: absolute;
@@ -180,11 +181,11 @@ span {
     0 0, 
     30px 30px, 30px 150px, 270px 150px, 270px 30px, 
     400px 30px, 400px 150px, 640px 150px, 640px 30px, 
-    30px 30px );
+    30px 30px );  
 }
 #ceiling {
   height: 90px;
-  width: 1920px;
+  width: 2500px;
   z-index: 1;
   background-image: linear-gradient(rgba(255, 255, 255, .1) 50%, transparent 50%, transparent);
   top: 0px;
@@ -254,16 +255,13 @@ span {
 .window {
   width: 240px;
   height: 120px;
-  background-color: blue;
   left: 30px;
   top: 30px;
-  box-shadow: hsla(0,0%,15%, 1) 0 0px 0px 4px, /* border */
-    hsla(0,0%,15%, .8) 0 -1px 5px 4px, /* soft SD */
-    hsla(0,0%,0%, .25) 0 -1px 0px 7px, /* bottom SD */
-    hsla(0,0%,100%,.7) 0 2px 1px 7px, /* top HL */
-    hsla(0,0%, 0%,.15) 0 -5px 6px 4px;
-
-    box-shadow: hsla(0,0%,15%, 1) 0 1px 0px 5px, /* border */ hsla(0,0%,15%, .8) 0 -1px 5px 10px, /* soft SD */ hsla(0,0%,0%, .25) 0 -1px 0px 9px, /* bottom SD */ hsla(0,0%,100%,.7) 0 -1px 1px 13px, /* top HL */ hsla(0,0%, 0%,.15) 0 -6px 6px 11px;
+  box-shadow: hsla(0,0%,15%, 1) 0 1px 0px 5px, /* border */
+    hsla(0,0%,15%, .8) 0 -1px 5px 10px, /* soft SD */
+    hsla(0,0%,0%, .25) 0 -1px 0px 9px, /* bottom SD */
+    hsla(0,0%,100%,.7) 0 -1px 1px 13px, /* top HL */
+    hsla(0,0%, 0%,.15) 0 -6px 6px 11px;
 }
 .first.window {
   left: 30px;
@@ -272,6 +270,9 @@ span {
 .second.window {
   left: 400px;
   top: 30px;
+}
+.hallway .window {
+  display: none;
 }
 .left.path {
   left: 0px;

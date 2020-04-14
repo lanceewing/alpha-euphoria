@@ -25,13 +25,13 @@ $.Game = {
     lastRandom: 481731,
 
     /**
-     * Rooms have: 0=deck/1=hallway, 0=normal/lower room, left path, right path.
+     * Rooms have: 0=deck/1=hallway, 0=normal/lower room, room width, left path, right path.
      */
     rooms: [
 
-      [0x00, 0x00,     ,     ],  // 1
-      [0x01, 0x00,     ,     ],  // 2
-      [0x01, 0x01,     ,     ],  // 3
+      [0x00, 0x00, 1920,     ,     ],  // 1
+      [0x01, 0x00, 1920,     ,     ],  // 2
+      [0x01, 0x01,  960,     ,     ],  // 3
 
     ],
 
@@ -89,8 +89,9 @@ $.Game = {
       $.scaleX = window.innerWidth / $.wrap.offsetWidth;
       $.scaleY = window.innerHeight / $.wrap.offsetHeight;
       $.wrap.style.transform = "scale3d(" + $.scaleX + ", " + $.scaleY + ", 1)";
-      $.wrap.style.marginLeft = ((window.innerWidth - 960) / 2) + "px";
-      $.screen.style.width = (window.innerWidth > 960? window.innerWidth : 960) + "px";
+      $.wrap.style.marginLeft = ((window.innerWidth - 960) / 2) + "px";    // Width of the game screen is 960.
+      // TODO: Decide whether this is needed.
+      //$.screen.style.width = (window.innerWidth > 960? window.innerWidth : 960) + "px";
     },
 
     /**
@@ -212,7 +213,7 @@ $.Game = {
       
       // Set the room back to the start, and clear the object map.
       this.objs = [];
-      this.room = 1;
+      this.room = 2;//1;
       
       // Create Ego (the main character) and add it to the screen.
       $.ego = new Ego();
@@ -287,11 +288,11 @@ $.Game = {
       // Small hack to account for the rotation of the planet. Not required in Firefox.
       $.space.style.zIndex = -1;
       
-      let wallX = $.ego.x - (960 / 2);
-      if (wallX < 0) wallX = 0;
-
-      $.screen.style.left = '-' + wallX + 'px';
-
+      // Adjust screen left to account for scrolling.
+      $.screenLeft = $.ego.x - (960 / 2);
+      if ($.screenLeft < 0) $.screenLeft = 0;
+      if ($.screenLeft > 960) $.screenLeft = 960;
+      $.screen.style.left = '-' + $.screenLeft + 'px';
 
       // Update sentence.
       if (!this._gameOver) {
