@@ -175,6 +175,7 @@ span {
   z-index: 5;
   background-color: #6b6f6c;
 }
+
 .deck .wall {
   clip-path: polygon( 
     0 0, 1920px 0, 1920px 209px, 0 209px, 
@@ -242,6 +243,24 @@ span {
   background-color:rgb(43, 21, 21);
   bottom: 60px;
 }
+#lower_left_wall {
+  width: 85px;
+  bottom: 0px;
+  height: 90px;
+  left: 49px;
+  background-color: rgb(43, 21, 21);
+  transform: skew(-48deg);
+  z-index: 11;
+}
+#lower_right_wall {
+  width: 85px;
+  bottom: 0px;
+  height: 90px;
+  right: 49px;
+  background-color:rgb(43, 21, 21);
+  transform: skew(48deg);
+  z-index: 11;
+}
 .lower.door {
   bottom: 60px;
   left: 370px;
@@ -278,16 +297,16 @@ span {
   left: 0px;
   width: 0;
   height: 0;
-  top: 130px;
-  border-top: 125px solid rgba(0, 0, 0, 0.3);
+  top: 339px;
+  border-top: 90px solid red;
   border-right: 100px solid transparent;
 }
 .right.path {
-  left: 860px;
+  left: 1820px;
   width: 0;
   height: 0;
-  top: 130px;
-  border-top: 125px solid rgba(0, 0, 0, 0.3);
+  top: 339px;
+  border-top: 90px solid red;
   border-left: 100px solid transparent;
 }
 .path {
