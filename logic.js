@@ -48,12 +48,21 @@ $.Logic = {
             break;
 
           case 'left path':
-          case 'right path':
+            $.Game.userInput = false;
             $.ego.stop();
             // Walk to be in front of the door/path.
             $.ego.moveTo(e.target.offsetLeft + (e.target.offsetWidth / 2), $.ego.z);
             // Now walk through the door/path.
-            $.ego.moveTo(e.target.offsetLeft + (e.target.offsetWidth / 2), e.target.offsetTop);
+            $.ego.moveTo(e.target.offsetLeft - 50, 1000);
+            break;
+
+          case 'right path':
+            $.Game.userInput = false;
+            $.ego.stop();
+            // Walk to be in front of the door/path.
+            $.ego.moveTo(e.target.offsetLeft + (e.target.offsetWidth / 2), $.ego.z);
+            // Now walk through the door/path.
+            $.ego.moveTo(e.target.offsetLeft + e.target.offsetWidth + 50, 1000);
             break;
 
           case 'road':

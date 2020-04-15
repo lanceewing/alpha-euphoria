@@ -243,7 +243,7 @@ span {
   background-color:rgb(43, 21, 21);
   bottom: 60px;
 }
-#lower_left_wall {
+.hallway #lower_left_wall {
   width: 85px;
   bottom: 0px;
   height: 90px;
@@ -252,7 +252,7 @@ span {
   transform: skew(-48deg);
   z-index: 11;
 }
-#lower_right_wall {
+.hallway #lower_right_wall {
   width: 85px;
   bottom: 0px;
   height: 90px;
@@ -293,7 +293,7 @@ span {
 .hallway .window {
   display: none;
 }
-.left.path {
+.hallway .left.path {
   left: 0px;
   width: 0;
   height: 0;
@@ -301,7 +301,7 @@ span {
   border-top: 90px solid red;
   border-right: 100px solid transparent;
 }
-.right.path {
+.hallway .right.path {
   left: 1820px;
   width: 0;
   height: 0;
