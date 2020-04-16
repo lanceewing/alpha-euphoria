@@ -127,10 +127,11 @@ span {
 #itemlist {
   position: absolute;
   left: 0px;
-  padding: 2px 4px 2px 4px;
+  padding: 5px 4px 2px 12px;
 }
-#itemlist span {
+#itemlist div {
   width: 300px;
+  line-height: 25px;
 }
 #commands {
   width: 608px;
@@ -194,6 +195,24 @@ span {
   background-size: 90px 2px;
   background-color: #063842;
   transform: perspective(55px) rotateX(-50deg);
+}
+.sign {
+  font-size: 114px;
+  width: 200px;
+  height: 100px;
+  color: #007eff26;
+  font-weight: bold;
+  font-family: "Verdana";
+  top: 29px;
+}
+.sign .level {
+  left: 98px;
+}
+.left.sign {
+  left: 35px;
+}
+.right.sign {
+  right: 125px;
 }
 .light {
   top: 18px;

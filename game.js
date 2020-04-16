@@ -20,18 +20,31 @@ $.Game = {
     userInput: true,
 
     /**
+     * The current level on the space station.
+     */
+    level: 3,
+
+    /**
      * Last random number in the sequence. Always starts with same seed.
      */
     lastRandom: 481731,
 
     /**
-     * Rooms have: 0=deck/1=hallway, 0=normal/lower room, room width, left path, right path.
+     * Rooms have: 0=deck/1=hallway, 0=normal/lower room, room width, left edge, left path, left door up,
+     * right door up, right path, right edge, right door down, left door down.
+     * 
      */
     rooms: [
+ 
+      [0x01, 0x00, 1920,     ,    4,     ,     ,    2,     ,     ,     ],  // 1
+      [0x01, 0x00, 1920,     ,    1,     ,     ,    3,     ,     ,     ],  // 2
+      [0x01, 0x00, 1920,     ,    2,     ,     ,    4,     ,     ,     ],  // 3
+      [0x01, 0x00, 1920,     ,    3,     ,     ,    1,     ,     ,     ],  // 4
 
-      [0x00, 0x00, 1920,     ,     ],  // 1
-      [0x01, 0x00, 1920,     ,     ],  // 2
-      [0x01, 0x01,  960,     ,     ],  // 3
+      [0x01, 0x00, 1920,     ,     ,     ,     ,     ,     ,     ,     ],  // 
+      [0x01, 0x01,  960,     ,     ,     ,     ,     ,     ,     ,     ],  // 
+
+      [0x01, 0x00, 1920,     ,     ,     ,     ,     ,     ,     ,     ],  // 
 
     ],
 
@@ -113,6 +126,8 @@ $.Game = {
       $.controls = document.getElementById('controls');
       $.msg = document.getElementById('msg');
       $.overlay = document.getElementById('overlay');
+      $.direction = document.getElementsByClassName('direction');
+      $.level = document.getElementsByClassName('level');
 
       this.fillScreen();
       
@@ -467,6 +482,12 @@ $.Game = {
       let onDeck = !inHall;
       $.screen.className = (onDeck? 'deck ' : 'hallway ');
 
+      let dirChar = "ΔΘΣΩ"[$.ego.nesw];
+      $.direction[0].textContent = dirChar;
+      $.direction[1].textContent = dirChar;
+      $.level[0] = this.level;
+      $.level[1] = this.level;
+
       // Add props
       for (let i=0; i<this.props.length; i++) {
         var prop = this.props[i];
@@ -483,13 +504,13 @@ $.Game = {
           let g = this.actors[this.room][i];
           if (g == null) {
             // One in three ghosts is a child ghost.
-            g = this.actors[this.room][i] = new Ghost((this.random(3) == 1? 35 : 48));
+            //g = this.actors[this.room][i] = new Ghost((this.random(3) == 1? 35 : 48));
           }
-          g.add();
-          if (g.x == 0) {
-            g.setPosition(this.random(880) + 20, 0, this.random(120) + 540);
-          }
-          this.objs.push(g);
+          //g.add();
+          //if (g.x == 0) {
+          //  g.setPosition(this.random(880) + 20, 0, this.random(120) + 540);
+          //}
+          //this.objs.push(g);
         }
       }
 
@@ -582,7 +603,7 @@ $.Game = {
      * Adds the given item to the inventory.
      */
     getItem: function(name) {
-      var item = document.createElement('span');
+      var item = document.createElement('div');
       item.innerHTML = name;
       $.items.appendChild(item);
       

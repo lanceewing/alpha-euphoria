@@ -31,7 +31,8 @@ class Ego extends Actor {
             
             // Now check if there is a room on this edge.
             if (edge < 10) {
-                let edgeData = $.Game.rooms[this.room - 1][edge];
+                // Edge config starts at position 3 in room data.
+                let edgeData = $.Game.rooms[this.room - 1][2 + edge]; 
                 if (edgeData) {
                     $.Game.userInput = false;
                     
@@ -43,24 +44,24 @@ class Ego extends Actor {
                     
                     // Work out the new position for ego.
                     switch (edge) {
-                        case 1: // Hit left edge, so come in on right edge.
-                            this.setPosition(960 + this.width, this.y, 600);
+                        case 1: // Left edge.
+                            this.setPosition(1920 + this.width, this.y, 600);
                             this.setDirection(Sprite.LEFT);
-                            this.moveTo(960 - this.width - 50, 600, function() {
+                            this.moveTo(1920 - this.width - 50, 600, function() {
                                 $.Game.userInput = true;
                             });
                             break;
 
                         case 2: // Hit left path, so come in from right path.
-                            this.setPosition(885, this.y, 500);
-                            this.setDirection(Sprite.OUT);
-                            this.moveTo(910, 600, function() {
+                            this.setPosition(1970, this.y, 740);
+                            this.setDirection(Sprite.IN);
+                            this.moveTo(1870, 600, function() {
                                 $.Game.userInput = true;
                             });
                             this.nesw = ((this.nesw + 1) & 0x03);
                             break;
 
-                        case 3: // Hit left door, so come in through right door.
+                        case 3: // Hit left door up.
                             this.setPosition(645, this.y, 500);
                             this.setDirection(Sprite.OUT);
                             this.moveTo(670, 600, function() {
@@ -68,7 +69,7 @@ class Ego extends Actor {
                             });
                             break;
 
-                        case 4: // Hit right door, so come in through left door.
+                        case 4: // Hit right door up.
                             this.setPosition(268, this.y, 500);
                             this.setDirection(Sprite.OUT);
                             this.moveTo(293, 600, function() {
@@ -77,15 +78,15 @@ class Ego extends Actor {
                             break;
 
                         case 5: // Hit right path, so come in from left path.
-                            this.setPosition(25, this.y, 500);
-                            this.setDirection(Sprite.OUT);
+                            this.setPosition(-50, this.y, 740);
+                            this.setDirection(Sprite.IN);
                             this.moveTo(50, 600, function() {
                                 $.Game.userInput = true;
                             });
                             this.nesw = ((this.nesw - 1) & 0x03);
                             break;
 
-                        case 6: // Hit right edge, so come in on left edge.
+                        case 6: // Right edge.
                             this.setPosition(0 - this.width * 2, this.y, 600);
                             this.setDirection(Sprite.RIGHT);
                             this.moveTo(this.width + 50, 600, function() {
@@ -93,12 +94,12 @@ class Ego extends Actor {
                             });
                             break;
 
-                        case 7: // Hit road edge, so come in at road edge.
-                            this.setDirection(Sprite.IN);
-                            this.moveTo($.ego.x, 600, function() {
-                                $.Game.userInput = true;
-                            });
-                            this.nesw = ((this.nesw + 2) & 0x03);
+                        case 7: // Right door down.
+                            
+                            break;
+
+                        case 8: // Left door down.
+                            
                             break;
                     }
                     

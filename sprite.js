@@ -165,7 +165,15 @@ class Sprite extends Obj {
                     if (z > 667) edge = 10;
                 } else {
                     if (z > 740) {
-                        edge = 7;
+                        if (x < 0) {
+                            edge = 2;   // Left path
+                        } else if (x > 1850) {
+                            edge = 5;   // Right path
+                        } else if (x > 960) {
+                            edge = 7;   // Right door down
+                        } else {
+                            edge = 8;   // Left door down.
+                        }
                     }
                 }
                 
@@ -178,15 +186,24 @@ class Sprite extends Obj {
                         this.elem.style.opacity = 1.0 - ((530 - z) / 100);
                     } else {
                         // Non-ego actor has hit wall.
-                        edge = (x < 480? (x < 100? 2 : 3) : (x < 860? 4 : 5));
+                        edge = 10;
                     }
                 }
                 if (z < 500) {
                     // Ego has now reached the horizon, so time for a room change. The x value
                     // tells us which exit it was.
-                    edge = (x < 480? (x < 100? 2 : 3) : (x < 860? 4 : 5));
+                    edge = (x < 960? 3 : 4);
                 }
                 
+                // 1 = left edge
+                // 2 = left path
+                // 3 = left door up
+                // 4 = right door up
+                // 5 = right path
+                // 6 = right edge
+                // 7 = right door down
+                // 8 = left door down
+
                 // Increment the step size the step increment, capping at the max step.
                 if ((this.step += this.stepInc) > this.maxStep) this.step = this.maxStep;
             }
