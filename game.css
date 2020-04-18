@@ -196,6 +196,7 @@ span {
   background-color: #063842;
   transform: perspective(55px) rotateX(-50deg);
 }
+
 .sign {
   font-size: 114px;
   width: 200px;
@@ -214,6 +215,10 @@ span {
 .right.sign {
   right: 125px;
 }
+.deck .sign {
+  display: none;
+}
+
 .light {
   top: 18px;
   left: 140px;
@@ -281,23 +286,20 @@ span {
   transform: skew(48deg);
   z-index: 11;
 }
+
 .right.door {
+  z-index: 6;
   width: 185px;
   height: 162px;
-  bottom: 0px;
+  bottom: 171px;
   overflow: hidden;
   background-color: red;
   left: 370px;
   border-radius: 30% 30% 0% 0%;
   box-shadow: 
-    /*inset hsla(0,0%,15%,  1) 0  0px 0px 4px, /* border */
-    /*inset hsla(0,0%,15%, .8) 0 -1px 5px 4px, /* soft SD */
-    /*inset hsla(0,0%,0%, .25) 0 -1px 0px 7px, /* bottom SD */
-    /*inset hsla(0,0%,100%,.7) 0  2px 1px 7px, /* top HL */
     hsla(0,0%, 0%,.35) 6px 0px 4px -1px,
     hsla(0,0%, 0%,.35) -6px 0px 4px -1px,
     hsla(0,0%, 0%,.35) 0 -5px 4px -1px; 
-    /* outer SD */
 }
 .right.door:before,
 .right.door:after{
@@ -334,12 +336,75 @@ span {
     inset hsla(0,0%,0%, .25) 5px -4px 0px 0px, /* soft SD */
     hsla(0,0%, 0%,.15) 0 -5px 6px 4px; /* outer SD */
 }
-.right.door:hover:before{
+.right.door.open:before{
   left: -100px;
 }
-.right.door:hover:after{
+.right.door.open:after{
   left: 100px;
 }
+.deck .right.door {
+  display: none;
+}
+
+.left.door {
+  z-index: 6;
+  width: 185px;
+  height: 162px;
+  bottom: 171px;
+  overflow: hidden;
+  background-color: red;
+  left: 370px;
+  border-radius: 30% 30% 0% 0%;
+  box-shadow: 
+    hsla(0,0%, 0%,.35) 6px 0px 4px -1px,
+    hsla(0,0%, 0%,.35) -6px 0px 4px -1px,
+    hsla(0,0%, 0%,.35) 0 -5px 4px -1px; 
+}
+.left.door:before,
+.left.door:after{
+  content: "";
+  width: 50%;
+  height: 162px;
+  left: 0;
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  transition: 1000ms;
+  background-size: 150px;
+  background-image: -webkit-repeating-linear-gradient(left, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0)   6%, hsla(0,0%,100%, .1) 7.5%),
+    -webkit-repeating-linear-gradient(left, hsla(0,0%,  0%,0) 0%, hsla(0,0%,  0%,0)   4%, hsla(0,0%,  0%,.03) 4.5%),
+    -webkit-repeating-linear-gradient(left, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 1.2%, hsla(0,0%,100%,.15) 2.2%),
+    linear-gradient(180deg, hsl(0,0%,78%)  0%, 
+    hsl(0,0%,90%) 47%, 
+    hsl(0,0%,78%) 53%,
+    hsl(0,0%,70%)100%);
+}
+.left.door:before {
+  box-shadow: 
+    inset hsla(0,0%,15%,  1) 0  -2px 0px 0px, /* border */
+    inset hsla(0,0%,15%,  1) -2px 0px 0px 0px, /* border */
+    inset hsla(0,0%,0%, .05) 1px -8px 0px 0px, /* soft SD */
+    inset hsla(0,0%,0%, .25) -5px -4px 0px 0px, /* soft SD */
+    hsla(0,0%, 0%,.15) 0 -5px 6px 4px; /* outer SD */
+}
+.left.door:after {
+  box-shadow: 
+    inset hsla(0,0%,15%,  1) 0  -2px 0px 0px, /* border */
+    inset hsla(0,0%,15%,  1) 2px 0px 0px 0px, /* border */
+    inset hsla(0,0%,0%, .05) 0px 0px 0px 0px, /* soft SD */
+    inset hsla(0,0%,0%, .25) 5px -4px 0px 0px, /* soft SD */
+    hsla(0,0%, 0%,.15) 0 -5px 6px 4px; /* outer SD */
+}
+.left.door.open:before{
+  left: -100px;
+}
+.left.door.open:after{
+  left: 100px;
+}
+.deck .left.door {
+  display: none;
+}
+
 .lower.door {
   bottom: 60px;
   left: 370px;

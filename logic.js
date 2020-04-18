@@ -40,11 +40,23 @@ $.Logic = {
             $.Game.userInput = false;
             $.ego.stop();
             // Walk to be in front of the door
-            $.ego.moveTo(e.target.offsetLeft + (e.target.offsetWidth / 2), $.ego.z);
+            $.ego.moveTo(e.target.offsetLeft + (e.target.offsetWidth / 2), $.ego.z, function() {
+              if (e.target.classList.contains('elevator')) {
+                // Elevator door.
+  
+              } else if (e.target.classList.contains('lower')) {
+                // Lower door, which has no animation.
+  
+              } else {
+                // Normal sliding door.
+                e.target.classList.add('open');
+              }
+            });
+
             // Now walk through the door.
             $.ego.moveTo(
               e.target.offsetLeft + (e.target.offsetWidth / 2), 
-              (e.target.classList.contains('lower')? 1000 : 500));
+              (e.target.classList.contains('lower')? 1000 : 480));
             break;
 
           case 'left path':

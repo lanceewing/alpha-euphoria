@@ -36,15 +36,19 @@ $.Game = {
      */
     rooms: [
  
-      [0x01, 0x00, 1920,     ,    4,     ,     ,    2,     ,     ,     ],  // 1
-      [0x01, 0x00, 1920,     ,    1,     ,     ,    3,     ,     ,     ],  // 2
-      [0x01, 0x00, 1920,     ,    2,     ,     ,    4,     ,     ,     ],  // 3
-      [0x01, 0x00, 1920,     ,    3,     ,     ,    1,     ,     ,     ],  // 4
+      // Hallways level 3.
+      [0x01, 0x00, 1920,     ,    4,    5,    5,    2,     ,     ,      ],  // 1 Hall
+      [0x01, 0x00, 1920,     ,    1,     ,     ,    3,     ,     ,      ],  // 2
+      [0x01, 0x00, 1920,     ,    2,     ,     ,    4,     ,     ,      ],  // 3
+      [0x01, 0x00, 1920,     ,    3,     ,     ,    1,     ,     ,      ],  // 4
 
-      [0x01, 0x00, 1920,     ,     ,     ,     ,     ,     ,     ,     ],  // 
-      [0x01, 0x01,  960,     ,     ,     ,     ,     ,     ,     ,     ],  // 
+      // Decks level 3.
+      [0x00, 0x00, 1920,     ,     ,     ,     ,     ,     ,    1,    1 ],  // 5 Deck
+      [0x00, 0x00, 1920,     ,     ,     ,     ,     ,     ,     ,      ],  // 6
+      [0x00, 0x00, 1920,     ,     ,     ,     ,     ,     ,     ,      ],  // 7
+      [0x00, 0x00, 1920,     ,     ,     ,     ,     ,     ,     ,      ],  // 8
 
-      [0x01, 0x00, 1920,     ,     ,     ,     ,     ,     ,     ,     ],  // 
+      [0x01, 0x00, 1920,     ,     ,     ,     ,     ,     ,     ,      ],  // 
 
     ],
 
@@ -128,6 +132,8 @@ $.Game = {
       $.overlay = document.getElementById('overlay');
       $.direction = document.getElementsByClassName('direction');
       $.level = document.getElementsByClassName('level');
+      $.leftDoor = document.getElementById('left_door');
+      $.rightDoor = document.getElementById('right_door');
 
       this.fillScreen();
       
@@ -228,12 +234,12 @@ $.Game = {
       
       // Set the room back to the start, and clear the object map.
       this.objs = [];
-      this.room = 2;//1;
+      this.room = 1;
       
       // Create Ego (the main character) and add it to the screen.
       $.ego = new Ego();
       $.ego.add();
-      $.ego.setPosition(500, 0, 600);
+      $.ego.setPosition(234, 0, 600);
 
       // Add actors into the rooms.
       // TODO: Change this to handle crew???

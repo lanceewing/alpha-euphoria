@@ -10,8 +10,7 @@ class Ego extends Actor {
         super(50, 150, 'grey', 0.95, 5, 'white', 'grey', 'red');//'rgb(20, 30, 20)');
         this.elem.classList.add('ego');
         this.elem.id = 'me';
-        // TODO: Use this for walking around the level in a square. Left/right paths at end of scrolls.
-        this.nesw = 2;
+        this.nesw = 1;
         this.setDirection(Sprite.OUT);
     }
   
@@ -62,9 +61,9 @@ class Ego extends Actor {
                             break;
 
                         case 3: // Hit left door up.
-                            this.setPosition(645, this.y, 500);
-                            this.setDirection(Sprite.OUT);
-                            this.moveTo(670, 600, function() {
+                            this.setPosition(this.x, this.y, 740);
+                            this.setDirection(Sprite.IN);
+                            this.moveTo(this.x, 600, function() {
                                 $.Game.userInput = true;
                             });
                             break;
@@ -99,7 +98,12 @@ class Ego extends Actor {
                             break;
 
                         case 8: // Left door down.
-                            
+                            this.setPosition(this.x, this.y, 500);
+                            this.setDirection(Sprite.OUT);
+                            this.moveTo(this.x, 600, function() {
+                                $.leftDoor.classList.remove('open');
+                                $.Game.userInput = true;
+                            });
                             break;
                     }
                     
