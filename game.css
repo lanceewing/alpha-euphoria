@@ -128,10 +128,13 @@ span {
   position: absolute;
   left: 0px;
   padding: 5px 4px 2px 12px;
+  /*transition: all 0.4s;*/
 }
 #itemlist div {
   width: 300px;
   line-height: 25px;
+  font-family: "space-age-regular";
+  font-size: 18px;
 }
 #commands {
   width: 608px;
@@ -416,7 +419,7 @@ span {
     0 0, 
     30px 30px, 30px 150px, 270px 150px, 270px 30px, 
     400px 30px, 400px 150px, 640px 150px, 640px 30px, 
-    770px 30px, 770px 150px, 1150px 150px, 1150px 30px,
+    770px 30px, 770px 182px, 1150px 182px, 1150px 30px,
     1280px 30px, 1280px 150px, 1520px 150px, 1520px 30px,
     1650px 30px, 1650px 150px, 1890px 150px, 1890px 30px,
     30px 30px, 0 0 );  
@@ -444,6 +447,7 @@ span {
 .third.window {
   left: 770px;
   width: 380px;
+  height: 152px;
 }
 .fourth.window {
   left: 1280px;
@@ -629,4 +633,7 @@ span {
       rgba(0,0,0,1) 100%), 
      radial-gradient(ellipse at center, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 62%,rgba(0,0,0,1) 100%), 
      linear-gradient(#99E8EC, #19BDBA, #99E8EC, #19BDBA, #99E8EC);
+}
+.side2 #planet, .side3 #planet, .side4 #planet {
+  display: none;
 }
