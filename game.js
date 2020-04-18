@@ -234,7 +234,7 @@ $.Game = {
       
       // Set the room back to the start, and clear the object map.
       this.objs = [];
-      this.room = 1;
+      this.room = 5;
       
       // Create Ego (the main character) and add it to the screen.
       $.ego = new Ego();

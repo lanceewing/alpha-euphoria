@@ -177,14 +177,6 @@ span {
   background-color: #6b6f6c;
 }
 
-.deck .wall {
-  clip-path: polygon( 
-    0 0, 1920px 0, 1920px 209px, 0 209px, 
-    0 0, 
-    30px 30px, 30px 150px, 270px 150px, 270px 30px, 
-    400px 30px, 400px 150px, 640px 150px, 640px 30px, 
-    30px 30px );  
-}
 #ceiling {
   height: 90px;
   width: 2500px;
@@ -283,7 +275,8 @@ span {
   height: 90px;
   right: 49px;
   background-color:rgb(43, 21, 21);
-  transform: skew(48deg);
+  /* Small hack required for Chrome. Not required in Firefox. */
+  transform: skew(48deg) rotate3d(0, 0, 0, 0deg);
   z-index: 11;
 }
 
@@ -415,28 +408,53 @@ span {
   width: 185px;
   z-index: 5;
 }
+
+/* WINDOWS */
+.deck .wall {
+  clip-path: polygon( 
+    0 0, 1920px 0, 1920px 209px, 0 209px, 
+    0 0, 
+    30px 30px, 30px 150px, 270px 150px, 270px 30px, 
+    400px 30px, 400px 150px, 640px 150px, 640px 30px, 
+    770px 30px, 770px 150px, 1150px 150px, 1150px 30px,
+    1280px 30px, 1280px 150px, 1520px 150px, 1520px 30px,
+    1650px 30px, 1650px 150px, 1890px 150px, 1890px 30px,
+    30px 30px, 0 0 );  
+}
 .window {
+  z-index: 5;
   width: 240px;
   height: 120px;
   left: 30px;
-  top: 30px;
+  top: 80px;
   box-shadow: hsla(0,0%,15%, 1) 0 1px 0px 5px, /* border */
     hsla(0,0%,15%, .8) 0 -1px 5px 10px, /* soft SD */
     hsla(0,0%,0%, .25) 0 -1px 0px 9px, /* bottom SD */
     hsla(0,0%,100%,.7) 0 -1px 1px 13px, /* top HL */
     hsla(0,0%, 0%,.15) 0 -6px 6px 11px;
+  /* Hack required for Webkit. Firefox doesn't need this. */
+  transform: rotate3d(0, 0, 0, 0deg);
 }
 .first.window {
   left: 30px;
-  top: 30px;
 }
 .second.window {
   left: 400px;
-  top: 30px;
+}
+.third.window {
+  left: 770px;
+  width: 380px;
+}
+.fourth.window {
+  left: 1280px;
+}
+.fifth.window {
+  left: 1650px;
 }
 .hallway .window {
   display: none;
 }
+
 .hallway .left.path {
   left: 0px;
   width: 0;
@@ -452,6 +470,8 @@ span {
   top: 339px;
   border-top: 90px solid red;
   border-left: 100px solid transparent;
+  /* Small hack required for Chrome. Not required in Firefox. */
+  transform: rotate3d(0, 0, 0, 0deg);
 }
 .path {
   width: 100px;
