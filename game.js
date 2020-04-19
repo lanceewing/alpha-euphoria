@@ -134,6 +134,7 @@ $.Game = {
       $.level = document.getElementsByClassName('level');
       $.leftDoor = document.getElementById('left_door');
       $.rightDoor = document.getElementById('right_door');
+      $.elevatorPanel = document.getElementById('elevator_panel');
 
       this.fillScreen();
       

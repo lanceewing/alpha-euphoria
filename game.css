@@ -307,6 +307,7 @@ span {
 }
 .right.door:before,
 .right.door:after{
+  transform: rotate3d(0, 0, 0, 0deg);
   content: "";
   width: 50%;
   height: 162px;
@@ -424,6 +425,9 @@ span {
 }
 
 /* ELEVATOR */
+#elevator * {
+  pointer-events: none;
+}
 #elevator {
   z-index: 6;
   width: 185px;
@@ -533,6 +537,7 @@ span {
     hsl(0,0%,70%)100%);
 }
 #elevator:before {
+  transform: rotate3d(0, 0, 0, 0deg);
   left: 0px;
   box-shadow: 
     inset hsla(0,0%,15%,  1) 0  -2px 0px 0px, /* border */
@@ -542,6 +547,7 @@ span {
     hsla(0,0%, 0%,.15) 0 -5px 6px 4px; /* outer SD */
 }
 #elevator:after {
+  transform: rotate3d(0, 0, 0, 0deg);
   right: 0px;
   box-shadow: 
     inset hsla(0,0%,15%,  1) 0  -2px 0px 0px, /* border */
@@ -550,10 +556,10 @@ span {
     inset hsla(0,0%,0%, .25) 5px -4px 0px 0px, /* soft SD */
     hsla(0,0%, 0%,.15) 0 -5px 6px 4px; /* outer SD */
 }
-#elevator:hover:before{
+#elevator.open:before{
   left: -100px;
 }
-#elevator:hover:after{
+#elevator.open:after{
   right: -100px;
 }
 .deck #elevator {
@@ -788,23 +794,15 @@ span {
 }
 
 #elevator_panel {
-  background-image: 
-  linear-gradient(180deg, 
-    transparent 0%, 
-    transparent 10%,
-    rgba(255,255,255,0.6) 45%, 
-    transparent 55%, 
-    rgba(255,255,255,0.6) 65%,
-    rgba(255,255,255,0.4) 85%, 
-    transparent 95%, 
-    transparent 100%);
-  width: 248px;
-  border: 4px outset rgba(255,255,255,0.2);
+  width: 252px;
+  border: 6px outset rgba(255,255,255,0.2);
   height: 250px;
   position: absolute;
   left: 356px;
   top: 117px;
+  z-index: 1001;
   display: none;
+  box-shadow: none;
 }
 #elevator_panel button {
   display: inline-block;
@@ -816,10 +814,8 @@ span {
   height: 60px;
   margin: 10px 30px;
   font-size: 20px;
-  font-family: 
-    Courier New, 
-    monospace;
-  font-weight: bold;
+  font-family: space-age-regular;
+  text-shadow: hsla(0,0%,40%,.5) 0 -1px 0, hsla(0,0%,100%,.6) 0 2px 1px;
   color: #444;
   background-image: -webkit-radial-gradient(  50%   0%,  8% 50%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
     -webkit-radial-gradient(  50% 100%, 12% 50%, hsla(0,0%,100%,.6) 0%, hsla(0,0%,100%,0) 100%),
