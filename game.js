@@ -191,6 +191,10 @@ $.Game = {
           // TODO: Intro song will be DIFFER1. NEW10 will be played after the drama starts. 
           // TODO: Pre-buffer time will avoid jerky playback.
           // TODO: Starting to prebuffer songs during the "Click to play" but before starting to use audio might work.
+          // TODO: load function supports a callback function for when the processing has finished.
+          // TODO: Sample rate can be set, which might give us better performance for worse quality.
+          // TODO: Do we have a way of detecting when the realtime playback finishes?
+          // TODO: Player can be paused.
 
           // // Starting playing ROL file in the background.
           // fetch('./songs/NEW10.ROL').then(function(res){
