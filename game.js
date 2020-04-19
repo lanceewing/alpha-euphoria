@@ -166,7 +166,7 @@ $.Game = {
         elevatorButtons[i].onclick = function(e) {
           let elem = e.target;
           let floor = elem.dataset.value;
-          $.Game.level = floor;
+          $.Game.setLevel(floor);
           $.screen.style.opacity = 1.0;
           $.elevatorPanel.style.display = 'none';
           $.ego.setDirection(Sprite.OUT);
@@ -179,6 +179,18 @@ $.Game = {
       
       // Start in game over mode.
       this.gameOver();
+    },
+
+    /**
+     * Sets the current space station level.
+     * 
+     * @param {*} level 
+     */
+    setLevel: function(level) {
+      let levelText = ['I', 'II', 'III', 'IV', 'V', 'VI'][level - 1];
+      $.level[0].textContent = levelText;
+      $.level[1].textContent = levelText;
+      $.Game.level = level;
     },
 
     /**
