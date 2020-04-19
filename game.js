@@ -189,9 +189,11 @@ $.Game = {
 
 
           // TODO: Intro song will be DIFFER1. NEW10 will be played after the drama starts. 
+          // TODO: Pre-buffer time will avoid jerky playback.
+          // TODO: Starting to prebuffer songs during the "Click to play" but before starting to use audio might work.
 
           // // Starting playing ROL file in the background.
-          // fetch('./songs/DIFFER1.ROL').then(function(res){
+          // fetch('./songs/NEW10.ROL').then(function(res){
           //   return res.arrayBuffer();
           // }).then(function(rol){
           //     fetch('./songs/STANDARD.BNK').then(function(res){
@@ -199,7 +201,7 @@ $.Game = {
           //     }).then(function(standardBank){
           //         var player = new OPL3.Player(OPL3.format.ROL, {
           //             instruments: standardBank,
-          //             prebuffer: 3000,
+          //             prebuffer: 10000,
           //             volume: 3
           //         });
           //         player.play(rol);
@@ -331,7 +333,7 @@ $.Game = {
         this.fadeOut($.screen);
         setTimeout(function() {
           $.Game.newRoom();
-        }, 200);
+        }, 500);
       }
 
       // Update cursor and overlay based on user input state.
@@ -731,7 +733,7 @@ $.Game = {
      * @param {Object} elem The DOM Element to fade out.
      */
     fadeOut: function(elem) {
-      elem.style.transition = 'opacity 0.2s';
+      elem.style.transition = 'opacity 0.5s';
       elem.style.opacity = 0.0;
     }
   };

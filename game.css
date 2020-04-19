@@ -4,12 +4,17 @@
   url("space-age.spaceage.otf") format("opentype"),
   url("space-age.regular.ttf") format("truetype");
 }
+html {
+  --deck-floor-colour: #7a77d0;
+  --hall-floor-colour: red;
+}
 * {  
   -webkit-user-select: none;  /* Chrome all / Safari all */
   -moz-user-select: none;     /* Firefox all */
   -ms-user-select: none;      /* IE 10+ */
   -o-user-select: none;       /* Opera */
   user-select: none;          /* Likely future */
+  box-sizing: border-box;
 }
 body {
   background: #0c161d;
@@ -97,7 +102,7 @@ span {
   height: 138px;
   z-index: 1;
 }
-#controls span:hover {
+#controls span:hover, #itemlist div:hover {
   color: hsl(210, 100%, 40%);
   text-shadow: hsla(210,100%,20%,.3) 0 -1px 0, hsl(210,100%,85%) 0 2px 1px, hsla(200,100%,80%,1) 0 0 5px, hsla(210,100%,50%,.6) 0 0 20px;
 }
@@ -226,7 +231,7 @@ span {
   border-radius: 50%;
   background: lightgray;
   transform: translateX(-50%);
-  z-index: 10;
+  z-index: 1000;
   border: 2px solid dimgray;
   border-bottom: none;
   border-top: 3px solid #222;
@@ -243,13 +248,16 @@ span {
   transform: translateX(-50%) perspective(400px) rotateX(45deg);
   transform-origin: top center;
   background: linear-gradient(0deg, transparent, rgba(255, 255, 255, 0.8));
-  z-index: 8;
+  z-index: 999;
 }
 .floor {
   bottom: 90px;
   height: 81px;
   width: 1920px;
-  background-color: red;
+  background-color: var(--hall-floor-colour);
+}
+.deck .floor {
+  background-color: var(--deck-floor-colour);
 }
 .lower.floor {
   height: 60px;
@@ -290,7 +298,7 @@ span {
   bottom: 171px;
   overflow: hidden;
   background-color: red;
-  left: 370px;
+  left: 1365px;
   border-radius: 30% 30% 0% 0%;
   box-shadow: 
     hsla(0,0%, 0%,.35) 6px 0px 4px -1px,
@@ -348,13 +356,15 @@ span {
   height: 162px;
   bottom: 171px;
   overflow: hidden;
-  background-color: red;
+  background: linear-gradient(180deg, rgba(0,0,0,0.75) 80%, var(--hall-floor-colour) 100%);
   left: 370px;
   border-radius: 30% 30% 0% 0%;
   box-shadow: 
     hsla(0,0%, 0%,.35) 6px 0px 4px -1px,
     hsla(0,0%, 0%,.35) -6px 0px 4px -1px,
-    hsla(0,0%, 0%,.35) 0 -5px 4px -1px; 
+    hsla(0,0%, 0%,.35) 0 -5px 4px -1px;
+    /*inset var(--hall-floor-colour) 0px -10px 0px 0px,
+    inset var(--deck-floor-colour) 0px -40px 10px 0px*/; 
 }
 .left.door:before,
 .left.door:after{
@@ -404,12 +414,152 @@ span {
 .lower.door {
   bottom: 60px;
   left: 370px;
-  border-bottom: 31px solid red;
+  border-bottom: 31px solid var(--hall-floor-colour);
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
   height: 0;
   width: 185px;
   z-index: 5;
+}
+.deck .lower.door {
+  border-bottom-color: var(--deck-floor-colour);
+}
+
+/* ELEVATOR */
+#elevator {
+  z-index: 6;
+  width: 185px;
+  height: 162px;
+  bottom: 171px;
+  left: 867px;
+  overflow: hidden;
+  box-shadow: 
+    hsla(0,0%, 0%,.35) 6px 0px 4px -1px, 
+    hsla(0,0%, 0%,.35) -6px 0px 4px -1px, 
+    hsla(0,0%, 0%,.35) 0 -5px 4px -1px;
+}
+#elevator .interior {
+  font-size: 100px;
+  perspective: 200px;
+  width: 100%;
+  height: 100%;
+}
+#elevator .interior .side-left {
+  position: absolute;
+  left: 0;
+  width: 1em;
+  height: 100%;
+  background: #ccc;
+  transform-origin: 0 50%;
+  transform: rotateY(90deg);
+}
+#elevator .interior .side-back {
+  position: absolute;
+  left: 0.01em;
+  width: 2.5em;
+  height: 100%;
+  background: #666;
+  transform-origin: 0 50%;
+  transform: translateZ(-1em);
+}
+#elevator .interior .side-right {
+  position: absolute;
+  right: 0;
+  width: 1em;
+  height: 100%;
+  background: #ccc;
+  transform-origin: 100% 50%;
+  transform: rotateY(-90deg);
+}
+#elevator .interior .side-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1em;
+  background: #aaa;
+  transform-origin: 50% 0;
+  transform: rotateX(-90deg);
+}
+#elevator .interior .side-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1em;
+  background: var(--hall-floor-colour);
+  transform-origin: 50% 100%;
+  transform: rotateX(90deg);
+}
+#elevator .interior .side-left:after {
+  content: "";
+  width: 100%;
+  height: 20px;
+  background: #fff;
+  position: absolute;
+  bottom: 45px;
+}
+#elevator .interior .side-back:after {
+  content: "";
+  width: 100%;
+  height: 20px;
+  background: #ddd;
+  position: absolute;
+  bottom: 45px;
+}
+#elevator .interior .side-right:after {
+  content: "";
+  width: 100%;
+  height: 20px;
+  background: #fff;
+  position: absolute;
+  bottom: 45px;
+}
+#elevator:before,
+#elevator:after{
+  content: "";
+  position: absolute;
+  z-index: 7;
+  width: 50%;
+  height: 162px;
+  display: inline-block;
+  box-sizing: border-box;
+  transition: 1000ms;
+  background-size: 150px;
+  background-image: -webkit-repeating-linear-gradient(left, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0)   6%, hsla(0,0%,100%, .1) 7.5%),
+    -webkit-repeating-linear-gradient(left, hsla(0,0%,  0%,0) 0%, hsla(0,0%,  0%,0)   4%, hsla(0,0%,  0%,.03) 4.5%),
+    -webkit-repeating-linear-gradient(left, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 1.2%, hsla(0,0%,100%,.15) 2.2%),
+    linear-gradient(180deg, hsl(0,0%,78%)  0%, 
+    hsl(0,0%,90%) 47%, 
+    hsl(0,0%,78%) 53%,
+    hsl(0,0%,70%)100%);
+}
+#elevator:before {
+  left: 0px;
+  box-shadow: 
+    inset hsla(0,0%,15%,  1) 0  -2px 0px 0px, /* border */
+    inset hsla(0,0%,15%,  1) -2px 0px 0px 0px, /* border */
+    inset hsla(0,0%,0%, .05) 1px -8px 0px 0px, /* soft SD */
+    inset hsla(0,0%,0%, .25) -5px -4px 0px 0px, /* soft SD */
+    hsla(0,0%, 0%,.15) 0 -5px 6px 4px; /* outer SD */
+}
+#elevator:after {
+  right: 0px;
+  box-shadow: 
+    inset hsla(0,0%,15%,  1) 0  -2px 0px 0px, /* border */
+    inset hsla(0,0%,15%,  1) 2px 0px 0px 0px, /* border */
+    inset hsla(0,0%,0%, .05) 0px 0px 0px 0px, /* soft SD */
+    inset hsla(0,0%,0%, .25) 5px -4px 0px 0px, /* soft SD */
+    hsla(0,0%, 0%,.15) 0 -5px 6px 4px; /* outer SD */
+}
+#elevator:hover:before{
+  left: -100px;
+}
+#elevator:hover:after{
+  right: -100px;
+}
+.deck #elevator {
+  display: none;
 }
 
 /* WINDOWS */
@@ -464,7 +614,7 @@ span {
   width: 0;
   height: 0;
   top: 339px;
-  border-top: 90px solid red;
+  border-top: 90px solid var(--hall-floor-colour);
   border-right: 100px solid transparent;
 }
 .hallway .right.path {
@@ -472,7 +622,7 @@ span {
   width: 0;
   height: 0;
   top: 339px;
-  border-top: 90px solid red;
+  border-top: 90px solid var(--hall-floor-colour);
   border-left: 100px solid transparent;
   /* Small hack required for Chrome. Not required in Firefox. */
   transform: rotate3d(0, 0, 0, 0deg);
