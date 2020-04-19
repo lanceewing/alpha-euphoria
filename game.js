@@ -135,6 +135,7 @@ $.Game = {
       $.leftDoor = document.getElementById('left_door');
       $.rightDoor = document.getElementById('right_door');
       $.elevatorPanel = document.getElementById('elevator_panel');
+      $.elevator = document.getElementById('elevator');
 
       this.fillScreen();
       
@@ -157,6 +158,23 @@ $.Game = {
         verbs[i].addEventListener("click", function(e) {
           $.Game.command = $.Game.verb = e.target.innerHTML;
         });
+      }
+
+      // Add event listeners for elevator buttons.
+      var elevatorButtons = document.getElementById('elevator_panel').getElementsByTagName('button');
+      for (let i=0; i<elevatorButtons.length; i++) {
+        elevatorButtons[i].onclick = function(e) {
+          let elem = e.target;
+          let floor = elem.dataset.value;
+          $.Game.level = floor;
+          $.screen.style.opacity = 1.0;
+          $.elevatorPanel.style.display = 'none';
+          $.ego.setDirection(Sprite.OUT);
+          $.ego.moveTo($.ego.x, 600, function() {
+              $.elevator.classList.remove('open');
+              $.Game.userInput = true;
+          });
+        };
       }
       
       // Start in game over mode.
