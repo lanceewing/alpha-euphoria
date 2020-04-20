@@ -36,20 +36,77 @@ $.Game = {
      */
     rooms: [
  
-      // Hallways level 3.
+      // Hallways level 1.
       [0x01, 0x00, 1920,     ,    4,    5,    5,    2,     ,     ,      ],  // 1 Hall
       [0x01, 0x00, 1920,     ,    1,    6,    6,    3,     ,     ,      ],  // 2
       [0x01, 0x00, 1920,     ,    2,    7,    7,    4,     ,     ,      ],  // 3
       [0x01, 0x00, 1920,     ,    3,    8,    8,    1,     ,     ,      ],  // 4
 
-      // Decks level 3.
+      // Decks level 1.
       [0x00, 0x00, 1920,     ,     ,     ,     ,     ,     ,    1,    1 ],  // 5 Deck
       [0x00, 0x00, 1920,     ,     ,     ,     ,     ,     ,    2,    2 ],  // 6
       [0x00, 0x00, 1920,     ,     ,     ,     ,     ,     ,    3,    3 ],  // 7
       [0x00, 0x00, 1920,     ,     ,     ,     ,     ,     ,    4,    4 ],  // 8
 
-      [0x01, 0x00, 1920,     ,     ,     ,     ,     ,     ,     ,      ],  // 
+      // Hallways level 2.
+      [0x01, 0x00, 1920,     ,   12,   13,   13,   10,     ,     ,      ],  // 9 Hall
+      [0x01, 0x00, 1920,     ,    9,   14,   14,   11,     ,     ,      ],  // 10
+      [0x01, 0x00, 1920,     ,   10,   15,   15,   12,     ,     ,      ],  // 11
+      [0x01, 0x00, 1920,     ,   11,   16,   16,    9,     ,     ,      ],  // 12
 
+      // Decks level 2.
+      [0x00, 0x00, 1920,     ,     ,     ,     ,     ,     ,    9,    9 ],  // 13 Deck
+      [0x00, 0x00, 1920,     ,     ,     ,     ,     ,     ,   10,   10 ],  // 14
+      [0x00, 0x00, 1920,     ,     ,     ,     ,     ,     ,   11,   11 ],  // 15
+      [0x00, 0x00, 1920,     ,     ,     ,     ,     ,     ,   12,   12 ],  // 16
+
+      // Hallways level 3.
+      [0x01, 0x00, 1920,     ,   20,   21,   21,   18,     ,     ,      ],  // 17 Hall
+      [0x01, 0x00, 1920,     ,   17,   22,   22,   19,     ,     ,      ],  // 18
+      [0x01, 0x00, 1920,     ,   18,   23,   23,   20,     ,     ,      ],  // 19
+      [0x01, 0x00, 1920,     ,   19,   24,   24,   17,     ,     ,      ],  // 20
+
+      // Decks level 3.
+      [0x00, 0x00, 1920,     ,     ,     ,     ,     ,     ,   17,   17 ],  // 21 Deck
+      [0x00, 0x00, 1920,     ,     ,     ,     ,     ,     ,   18,   18 ],  // 22
+      [0x00, 0x00, 1920,     ,     ,     ,     ,     ,     ,   19,   19 ],  // 23
+      [0x00, 0x00, 1920,     ,     ,     ,     ,     ,     ,   20,   20 ],  // 24
+
+      // Hallways level 4.
+      [0x01, 0x00, 1920,     ,   28,   29,   29,   26,     ,     ,      ],  // 25 Hall
+      [0x01, 0x00, 1920,     ,   25,   30,   30,   27,     ,     ,      ],  // 26
+      [0x01, 0x00, 1920,     ,   26,   31,   31,   28,     ,     ,      ],  // 27
+      [0x01, 0x00, 1920,     ,   27,   32,   32,   25,     ,     ,      ],  // 28
+
+      // Decks level 4.
+      [0x00, 0x00, 1920,     ,     ,     ,     ,     ,     ,   25,   25 ],  // 29 Deck
+      [0x00, 0x00, 1920,     ,     ,     ,     ,     ,     ,   26,   26 ],  // 30
+      [0x00, 0x00, 1920,     ,     ,     ,     ,     ,     ,   27,   27 ],  // 31
+      [0x00, 0x00, 1920,     ,     ,     ,     ,     ,     ,   28,   28 ],  // 32
+
+      // Hallways level 5.
+      [0x01, 0x00, 1920,     ,   36,   37,   37,   34,     ,     ,      ],  // 33 Hall
+      [0x01, 0x00, 1920,     ,   33,   38,   38,   35,     ,     ,      ],  // 34
+      [0x01, 0x00, 1920,     ,   34,   39,   39,   36,     ,     ,      ],  // 35
+      [0x01, 0x00, 1920,     ,   35,   40,   40,   33,     ,     ,      ],  // 36
+
+      // Decks level 5.
+      [0x00, 0x00, 1920,     ,     ,     ,     ,     ,     ,   33,   33 ],  // 37 Deck
+      [0x00, 0x00, 1920,     ,     ,     ,     ,     ,     ,   34,   34 ],  // 38
+      [0x00, 0x00, 1920,     ,     ,     ,     ,     ,     ,   35,   35 ],  // 39
+      [0x00, 0x00, 1920,     ,     ,     ,     ,     ,     ,   36,   36 ],  // 40
+
+      // Hallways level 6.
+      [0x01, 0x00, 1920,     ,   44,   45,   45,   42,     ,     ,      ],  // 41 Hall
+      [0x01, 0x00, 1920,     ,   41,   46,   46,   43,     ,     ,      ],  // 42
+      [0x01, 0x00, 1920,     ,   42,   47,   47,   44,     ,     ,      ],  // 43
+      [0x01, 0x00, 1920,     ,   43,   48,   48,   41,     ,     ,      ],  // 44
+
+      // Decks level 6.
+      [0x00, 0x00, 1920,     ,     ,     ,     ,     ,     ,   41,   41 ],  // 45 Deck
+      [0x00, 0x00, 1920,     ,     ,     ,     ,     ,     ,   42,   42 ],  // 46
+      [0x00, 0x00, 1920,     ,     ,     ,     ,     ,     ,   43,   43 ],  // 47
+      [0x00, 0x00, 1920,     ,     ,     ,     ,     ,     ,   44,   44 ],  // 48
     ],
 
     /*
@@ -136,6 +193,7 @@ $.Game = {
       $.rightDoor = document.getElementById('right_door');
       $.elevatorPanel = document.getElementById('elevator_panel');
       $.elevator = document.getElementById('elevator');
+      $.elevatorSign = document.getElementById('elevator_sign');
 
       this.fillScreen();
       
@@ -166,14 +224,20 @@ $.Game = {
         elevatorButtons[i].onclick = function(e) {
           let elem = e.target;
           let floor = elem.dataset.value;
+          let floorDiff = floor - $.Game.level;
+          $.Game.room = $.Game.room + (8 * floorDiff);
+          $.ego.room = $.Game.room;
           $.Game.setLevel(floor);
-          $.screen.style.opacity = 1.0;
           $.elevatorPanel.style.display = 'none';
           $.ego.setDirection(Sprite.OUT);
-          $.ego.moveTo($.ego.x, 600, function() {
+          $.Game.fadeOut($.screen);
+          setTimeout(function() {
+            $.Game.newRoom();
+            $.ego.moveTo($.ego.x, 600, function() {
               $.elevator.classList.remove('open');
               $.Game.userInput = true;
-          });
+            });
+          }, 500);
         };
       }
       
@@ -190,6 +254,7 @@ $.Game = {
       let levelText = ['I', 'II', 'III', 'IV', 'V', 'VI'][level - 1];
       $.level[0].textContent = levelText;
       $.level[1].textContent = levelText;
+      $.elevatorSign.textContent = levelText;
       $.Game.level = level;
     },
 
@@ -271,7 +336,7 @@ $.Game = {
       
       // Set the room back to the start, and clear the object map.
       this.objs = [];
-      this.room = 5;
+      this.room = 17;
       
       // Create Ego (the main character) and add it to the screen.
       $.ego = new Ego();
