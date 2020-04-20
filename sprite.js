@@ -182,8 +182,6 @@ class Sprite extends Obj {
                     if (this == $.ego) {
                         // We stop user input already and allow the user to walk a bit further.
                         if (this == $.ego) $.Game.userInput = false;
-                        // Fading effect as ego leaves through the door.
-                        this.elem.style.opacity = 1.0 - ((530 - z) / 100);
                     } else {
                         // Non-ego actor has hit wall.
                         edge = 10;
