@@ -69,9 +69,9 @@ class Ego extends Actor {
                             break;
 
                         case 4: // Hit right door up.
-                            this.setPosition(268, this.y, 500);
-                            this.setDirection(Sprite.OUT);
-                            this.moveTo(293, 600, function() {
+                            this.setPosition(this.x, this.y, 740);
+                            this.setDirection(Sprite.IN);
+                            this.moveTo(this.x, 600, function() {
                                 $.Game.userInput = true;
                             });
                             break;
@@ -94,7 +94,13 @@ class Ego extends Actor {
                             break;
 
                         case 7: // Right door down.
-                            
+                            this.setPosition(this.x, this.y, 500);
+                            this.setDirection(Sprite.OUT);
+                            this.moveTo(this.x, 600, function() {
+                                $.Game.userInput = true;
+                                $.leftDoor.classList.remove('open');
+                                $.rightDoor.classList.remove('open');
+                            });
                             break;
 
                         case 8: // Left door down.

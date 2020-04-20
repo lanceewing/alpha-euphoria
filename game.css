@@ -410,17 +410,24 @@ span {
   display: none;
 }
 
-.lower.door {
+#lower_left_door, #lower_right_door {
   bottom: 60px;
-  left: 370px;
   border-bottom: 31px solid var(--hall-floor-colour);
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
   height: 0;
-  width: 185px;
+  width: 190px;
   z-index: 5;
 }
-.deck .lower.door {
+#lower_left_door {
+  left: 357px;
+  transform: skew(-16deg);
+  border-left: 8px solid transparent;
+}
+#lower_right_door {
+  right: 350px;
+  transform: skew(16deg);
+  border-right: 8px solid transparent;
+}
+.deck #lower_left_door, .deck #lower_right_door {
   border-bottom-color: var(--deck-floor-colour);
 }
 
