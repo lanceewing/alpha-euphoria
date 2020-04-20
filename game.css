@@ -197,23 +197,36 @@ span {
   transform: perspective(55px) rotateX(-50deg);
 }
 
+.sign * {
+  pointer-events: auto;
+}
 .sign {
+  pointer-events: none;
+  display:flex;
+  justify-content: center;
+  z-index: 6;
   font-size: 114px;
-  width: 200px;
-  height: 100px;
+  width: 286px;
+  height: 90px;
   color: #007eff26;
+  text-shadow: hsla(0,0%,40%,.5) 0 -1px 0, hsla(0,0%,100%,.6) 0 2px 1px;
   font-weight: bold;
   font-family: "Verdana";
-  top: 29px;
+  top: 109px;
+  line-height: 81px;
+  overflow: hidden;
 }
-.sign .level {
-  left: 98px;
+.level {
+  position: static !important;
+}
+.direction {
+  position: static !important;
 }
 .left.sign {
   left: 35px;
 }
 .right.sign {
-  right: 125px;
+  right: 42px;
 }
 .deck .sign {
   display: none;
@@ -442,6 +455,9 @@ span {
   text-shadow: hsla(0,0%,40%,.5) 0 -1px 0, hsla(0,0%,100%,.6) 0 2px 1px;
   text-align: center;
   transform: rotate3d(0, 0, 0, 0deg);
+  color: #007eff26;
+  font-weight: bold;
+  font-family: "Verdana";
 }
 #elevator * {
   pointer-events: none;
@@ -745,7 +761,6 @@ span {
     inset hsla(0,0%,0%, .25) 0 -1px 0px 7px, /* bottom SD */
     inset hsla(0,0%,100%,.7) 0  2px 1px 7px, /* top HL */
     hsla(0,0%, 0%,.15) 0 -5px 6px 4px; /* outer SD */
-  /*transition: color .2s;*/
   background-size: 150px;
   border-radius: .5em;
   background-image: -webkit-repeating-linear-gradient(left, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0)   6%, hsla(0,0%,100%, .1) 7.5%),
