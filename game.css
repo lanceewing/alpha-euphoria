@@ -297,7 +297,7 @@ span {
   height: 162px;
   bottom: 171px;
   overflow: hidden;
-  background-color: red;
+  background: linear-gradient(180deg, rgba(0,0,0,0.75) 80%, var(--hall-floor-colour) 100%);
   left: 1365px;
   border-radius: 30% 30% 0% 0%;
   box-shadow: 

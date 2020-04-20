@@ -592,6 +592,14 @@ $.Game = {
       let onDeck = !inHall;
       $.screen.className = (onDeck? 'deck ' : 'hallway ') + 'side' + $.ego.nesw + ' ';
 
+      // If we're on deck, open the doors so that when ego walks back into the hallway, they'll
+      // start by being open and then will close.
+      if (onDeck) {
+        $.leftDoor.classList.add('open');
+        $.rightDoor.classList.add('open');
+      }
+
+      // Update the hallway sign.
       let dirChar = "ΔΘΣΩ"[$.ego.nesw];
       $.direction[0].textContent = dirChar;
       $.direction[1].textContent = dirChar;

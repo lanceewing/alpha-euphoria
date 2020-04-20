@@ -101,8 +101,9 @@ class Ego extends Actor {
                             this.setPosition(this.x, this.y, 500);
                             this.setDirection(Sprite.OUT);
                             this.moveTo(this.x, 600, function() {
-                                $.leftDoor.classList.remove('open');
                                 $.Game.userInput = true;
+                                $.leftDoor.classList.remove('open');
+                                $.rightDoor.classList.remove('open');
                             });
                             break;
                     }
