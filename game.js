@@ -227,12 +227,12 @@ $.Game = {
           let floorDiff = floor - $.Game.level;
           $.Game.room = $.Game.room + (8 * floorDiff);
           $.ego.room = $.Game.room;
-          $.Game.setLevel(floor);
           $.elevatorPanel.style.display = 'none';
           $.ego.setDirection(Sprite.OUT);
           $.Game.fadeOut($.screen);
           setTimeout(function() {
             $.Game.newRoom();
+            $.Game.setLevel(floor);
             $.ego.moveTo($.ego.x, 600, function() {
               $.elevator.classList.remove('open');
               $.Game.userInput = true;
@@ -412,10 +412,12 @@ $.Game = {
       $.space.style.zIndex = -1;
       
       // Adjust screen left to account for scrolling.
-      $.screenLeft = $.ego.x - (960 / 2);
-      if ($.screenLeft < 0) $.screenLeft = 0;
-      if ($.screenLeft > 960) $.screenLeft = 960;
-      $.screen.style.left = '-' + $.screenLeft + 'px';
+      if ($.ego.isVisible()) {
+        $.screenLeft = $.ego.x - (960 / 2);
+        if ($.screenLeft < 0) $.screenLeft = 0;
+        if ($.screenLeft > 960) $.screenLeft = 960;
+        $.screen.style.left = '-' + $.screenLeft + 'px';
+      }
 
       // Update sentence.
       if (!this._gameOver) {

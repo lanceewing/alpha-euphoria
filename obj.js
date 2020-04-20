@@ -19,6 +19,8 @@ class Obj {
         this.zIndex = zIndex;
         
         this.room = $.Game.room;
+
+        this.visible = true;
     }
 
     /**
@@ -64,6 +66,7 @@ class Obj {
      */
     hide() {
         this.elem.style.display = 'none';
+        this.visible = false;
     
         // This is mainly to reset any lower opacity that might have been in
         // place prior to being hidden, such as as the result of a fade.
@@ -75,6 +78,14 @@ class Obj {
      */
     show() {
         this.elem.style.display = 'block';
+        this.visible = true;
+    }
+
+    /**
+     * Returns whether this screen object is visible or not.
+     */
+    isVisible() {
+        return this.visible;
     }
 
     /**
