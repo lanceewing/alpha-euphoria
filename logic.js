@@ -188,7 +188,10 @@ $.Logic = {
             break;
 
           case 'sign':
-            $.ego.say("Its a street sign that says '" + $.sign.innerHTML + "'", 200);
+            $.ego.say("It says '" + 
+                ["Delta", "Theta", "Sigma", "Omega"][$.ego.nesw] + " side, level " + 
+                ['One', 'Two', 'Three', 'Four', 'Five', 'Six'][$.Game.level - 1] +
+                "'", 400);
             break;
 
           case 'crossing':
