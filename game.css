@@ -263,7 +263,7 @@ span {
   transform: translateX(-50%) perspective(400px) rotateX(45deg);
   transform-origin: top center;
   background: linear-gradient(0deg, transparent, rgba(255, 255, 255, 0.8));
-  z-index: 999;
+  z-index: 998;
 }
 .floor {
   bottom: 90px;
@@ -447,6 +447,9 @@ span {
 }
 
 /* ELEVATOR */
+.deck #elevator_sign {
+  display: none;
+}
 #elevator_sign {
   width: 60px;
   height: 25px;
