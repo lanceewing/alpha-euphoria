@@ -188,10 +188,10 @@ $.Logic = {
             break;
 
           case 'sign':
-            $.ego.say("It says '" + 
+            $.ego.say("The sign says '" + 
                 ["Delta", "Theta", "Sigma", "Omega"][$.ego.nesw] + " side, level " + 
                 ['One', 'Two', 'Three', 'Four', 'Five', 'Six'][$.Game.level - 1] +
-                "'", 400);
+                "'", 250);
             break;
 
           case 'crossing':

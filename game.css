@@ -215,6 +215,8 @@ span {
   top: 109px;
   line-height: 81px;
   overflow: hidden;
+  /* Hack required for Webkit. Firefox doesn't need this. */
+  transform: rotate3d(0, 0, 0, 0deg);
 }
 .level {
   position: static !important;
