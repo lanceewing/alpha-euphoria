@@ -409,7 +409,7 @@ $.Game = {
       this.updateObjects();
 
       // Small hack to account for the rotation of the planet. Not required in Firefox.
-      $.space.style.zIndex = -1;
+      $.space.style.zIndex = -3;
       
       // Adjust screen left to account for scrolling.
       if ($.ego.isVisible()) {
@@ -417,6 +417,10 @@ $.Game = {
         if ($.screenLeft < 0) $.screenLeft = 0;
         if ($.screenLeft > 960) $.screenLeft = 960;
         $.screen.style.left = '-' + $.screenLeft + 'px';
+      }
+
+      if (this.random(600) == 1) {
+        this.shakeScreen();
       }
 
       // Update sentence.
@@ -638,7 +642,7 @@ $.Game = {
         this.addObjEventListeners(screenObjs[i]);
       }
       
-      $.Game.fadeIn($.screen);
+      $.Game.fadeIn($.space);
       $.ego.show();
       $.Game.fadeIn($.ego.elem);
     },
@@ -845,7 +849,18 @@ $.Game = {
     fadeOut: function(elem) {
       elem.style.transition = 'opacity 0.5s';
       elem.style.opacity = 0.0;
+    },
+
+    /**
+     * Shakes the screen.
+     */
+    shakeScreen: function() {
+      $.screen.classList.add('shake');
+      setTimeout(function() {
+        $.screen.classList.remove('shake');
+      }, 1000);
     }
+
   };
   
   // On load, the game will start.
