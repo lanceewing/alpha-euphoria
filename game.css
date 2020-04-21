@@ -168,6 +168,10 @@ span {
   opacity: 0;
   overflow: hidden;
 }
+#screen_wrap {
+  position: relative;
+  z-index: -5;
+}
 #screen {
   position: relative;
   height: 430px;
@@ -827,7 +831,7 @@ span {
      radial-gradient(ellipse at center, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 62%,rgba(0,0,0,1) 100%), 
      linear-gradient(#99E8EC, #19BDBA, #99E8EC, #19BDBA, #99E8EC);
 }
-.side2 #planet, .side3 #planet, .side4 #planet {
+.side2 #planet, .side3 #planet, .side4 #planet, .hallway #planet {
   display: none;
 }
 

@@ -178,6 +178,7 @@ $.Game = {
       // Get a reference to each of the elements in the DOM that we'll need to update.
       $.wrap = document.getElementById('wrap');
       $.screen = document.getElementById('screen');
+      $.screenWrap =document.getElementById('screen_wrap');
       $.space = document.getElementById('space');
       $.wall = document.getElementsByClassName('wall')[0];
       $.time = document.getElementById('time');
@@ -229,7 +230,7 @@ $.Game = {
           $.ego.room = $.Game.room;
           $.elevatorPanel.style.display = 'none';
           $.ego.setDirection(Sprite.OUT);
-          $.Game.fadeOut($.screen);
+          $.Game.fadeOut($.screenWrap);
           setTimeout(function() {
             $.Game.newRoom();
             $.Game.setLevel(floor);
@@ -263,7 +264,7 @@ $.Game = {
      */
     gameOver: function(msg) {
       this.userInput = true;
-      this.fadeOut($.screen);
+      this.fadeOut($.screenWrap);
       if (msg) {
         $.msg.innerHTML = msg;
       }
@@ -436,7 +437,7 @@ $.Game = {
       // than what it was previously in, then we trigger entry in to the new room.
       if ($.ego.room != this.room) {
         this.room = $.ego.room;
-        this.fadeOut($.screen);
+        this.fadeOut($.screenWrap);
         setTimeout(function() {
           $.Game.newRoom();
         }, 500);
@@ -594,7 +595,7 @@ $.Game = {
       
       let inHall = ($.roomData[0] & 0x01);
       let onDeck = !inHall;
-      $.screen.className = (onDeck? 'deck ' : 'hallway ') + 'side' + $.ego.nesw + ' ';
+      $.screenWrap.className = (onDeck? 'deck ' : 'hallway ') + 'side' + $.ego.nesw + ' ';
 
       // If we're on deck, open the doors so that when ego walks back into the hallway, they'll
       // start by being open and then will close.
@@ -642,7 +643,7 @@ $.Game = {
         this.addObjEventListeners(screenObjs[i]);
       }
       
-      $.Game.fadeIn($.space);
+      $.Game.fadeIn($.screenWrap);
       $.ego.show();
       $.Game.fadeIn($.ego.elem);
     },

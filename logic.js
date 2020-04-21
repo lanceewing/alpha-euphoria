@@ -65,7 +65,7 @@ $.Logic = {
             });
             // Now walk through the elevator door.
             $.ego.moveTo(e.target.offsetLeft + (e.target.offsetWidth / 2), 510, function() {
-              $.screen.style.opacity = 0.5;
+              $.screenWrap.style.opacity = 0.5;
               $.elevatorPanel.style.display = 'block';
             });
             break;
