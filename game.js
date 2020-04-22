@@ -155,6 +155,13 @@ $.Game = {
      * The time in milliseconds since the current game started.
      */
     time: 0,
+
+    /**
+     * Boolean flags for game state.
+     */
+    flags: {
+      'gasLeakFixed' : false 
+    },
       
     /**
      * Scales the screen div to fit the whole screen.
@@ -195,6 +202,7 @@ $.Game = {
       $.elevatorPanel = document.getElementById('elevator_panel');
       $.elevator = document.getElementById('elevator');
       $.elevatorSign = document.getElementById('elevator_sign');
+      $.mist = document.getElementById('mist');
 
       this.fillScreen();
       
@@ -237,9 +245,8 @@ $.Game = {
           $.ego.setDirection(Sprite.OUT);
           $.Game.fadeOut($.screenWrap);
           setTimeout(function() {
-            $.Sound.play('ting');
-            $.Game.newRoom();
             $.Game.setLevel(floor);
+            $.Game.newRoom();
             $.ego.moveTo($.ego.x, 600, function() {
               $.elevator.classList.remove('open');
               $.Game.userInput = true;
@@ -609,6 +616,9 @@ $.Game = {
         $.leftDoor.classList.add('open');
         $.rightDoor.classList.add('open');
       }
+
+      // Update mist state.
+      $.mist.style.display = ((this.level == 4) && !this.flags.gasLeakFixed? 'block' : 'none');
 
       // Update the hallway sign.
       let dirChar = "ΔΘΣΩ"[$.ego.nesw];

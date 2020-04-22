@@ -62,6 +62,7 @@ $.Logic = {
             $.ego.stop();
             // Walk to be in front of the elevator.
             $.ego.moveTo(e.target.offsetLeft + (e.target.offsetWidth / 2), $.ego.z, function() {
+              $.Sound.play('ting');
               e.target.classList.add('open');
             });
             // Now walk through the elevator door.
