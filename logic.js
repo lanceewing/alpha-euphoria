@@ -47,6 +47,7 @@ $.Logic = {
               } else {
                 // Normal sliding door.
                 e.target.classList.add('open');
+                $.Sound.play('door');
               }
             });
 

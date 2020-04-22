@@ -835,6 +835,24 @@ span {
   display: none;
 }
 
+#mist {
+  height: 0px;
+  width: 1920px;
+  z-index: 700;
+  top: 245px;
+  box-shadow: rgba(148, 144, 13, 0.9) 0px 0px 40px 72px;
+  animation: mist_animate 0.82s alternate-reverse infinite;
+}
+@keyframes mist_animate {
+  0% {
+    top: 245px;
+  }
+  100% {
+    top: 247px;
+  }
+}
+
+
 #elevator_panel {
   width: 252px;
   border: 6px outset rgba(255,255,255,0.2);

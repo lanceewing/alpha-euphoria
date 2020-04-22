@@ -219,6 +219,11 @@ $.Game = {
         });
       }
 
+      // The sound generation might be a bit time consuming on slower machines.
+      setTimeout(function() {
+        $.Sound.init();
+      }, 1000);
+
       // Add event listeners for elevator buttons.
       var elevatorButtons = document.getElementById('elevator_panel').getElementsByTagName('button');
       for (let i=0; i<elevatorButtons.length; i++) {
@@ -232,6 +237,7 @@ $.Game = {
           $.ego.setDirection(Sprite.OUT);
           $.Game.fadeOut($.screenWrap);
           setTimeout(function() {
+            $.Sound.play('ting');
             $.Game.newRoom();
             $.Game.setLevel(floor);
             $.ego.moveTo($.ego.x, 600, function() {
@@ -857,6 +863,7 @@ $.Game = {
      */
     shakeScreen: function() {
       $.screen.classList.add('shake');
+      $.Sound.play('explosion');
       setTimeout(function() {
         $.screen.classList.remove('shake');
       }, 1000);
