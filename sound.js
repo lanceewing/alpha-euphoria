@@ -140,7 +140,7 @@ $.Sound = {
       if (data instanceof Array) {
         // If it is an Array, it must be jsfxr data.
         audio.src = jsfxr(data);
-        audio.volume = 0.4;
+        audio.volume = 1.0;
       } else {
         // Otherwise it is SoundBox data.
         var player = new CPlayer();
