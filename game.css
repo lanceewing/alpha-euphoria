@@ -853,6 +853,18 @@ span {
   }
 }
 
+#screen .actor.death {
+  position: relative;
+  transform-origin: bottom;
+  transform: rotate(-90deg) rotateY(0deg) translate(20px, 0px);
+  transition: transform 0.5s ease 0s;
+}
+#screen .actor.death:after {
+  position: absolute;
+  transform: rotate(90deg) scaleX(3) translate(-25px, 13px);
+  height: 20px;
+  transition: transform 0.5s ease 0s, height 0.5s ease 0s;
+}
 
 #elevator_panel {
   width: 252px;

@@ -151,6 +151,8 @@ $.Game = {
     
     score: 0,
 
+    lastTimeString: '60:00',
+
     /**
      * The time in milliseconds since the current game started.
      */
@@ -306,21 +308,21 @@ $.Game = {
           // TODO: Do we have a way of detecting when the realtime playback finishes?
           // TODO: Player can be paused.
 
-          // // Starting playing ROL file in the background.
-          // fetch('./songs/NEW10.ROL').then(function(res){
-          //   return res.arrayBuffer();
-          // }).then(function(rol){
-          //     fetch('./songs/STANDARD.BNK').then(function(res){
-          //         return res.arrayBuffer();
-          //     }).then(function(standardBank){
-          //         var player = new OPL3.Player(OPL3.format.ROL, {
-          //             instruments: standardBank,
-          //             prebuffer: 10000,
-          //             volume: 3
-          //         });
-          //         player.play(rol);
-          //     });
-          // });
+          // Starting playing ROL file in the background.
+          fetch('./songs/NEW10.ROL').then(function(res){
+            return res.arrayBuffer();
+          }).then(function(rol){
+              fetch('./songs/STANDARD.BNK').then(function(res){
+                  return res.arrayBuffer();
+              }).then(function(standardBank){
+                  var player = new OPL3.Player(OPL3.format.ROL, {
+                      instruments: standardBank,
+                      prebuffer: 10000,
+                      volume: 3
+                  });
+                  player.play(rol);
+              });
+          });
 
         };
       }
@@ -444,8 +446,23 @@ $.Game = {
         $.sentence.innerHTML = 'Game Over';
       }
 
-      $.time.innerHTML = this.buildTimeString(this.time);
-      
+      // Update the time string.
+      let currentTimeString = this.buildTimeString(this.time);
+      if (currentTimeString != this.lastTimeString) {
+        $.time.innerHTML = currentTimeString;
+        if (currentTimeString.endsWith('0')) {
+          let minute = currentTimeString.split(':')[0];
+          let audio = new SpeechSynthesisUtterance('Warning. ' + minute + ' minutes until total system failure');
+          var voices = window.speechSynthesis.getVoices();
+          audio.voice = voices.filter(function(voice) { return voice.name.includes('Zira'); })[0];  // David, Hazel, Zira
+          audio.pitch = 1;
+          audio.rate = 1;
+          audio.volume = 0.5;
+          window.speechSynthesis.speak(audio);
+        }
+        this.lastTimeString = currentTimeString;
+      }
+
       // If after updating all objects, the room that Ego says it is in is different
       // than what it was previously in, then we trigger entry in to the new room.
       if ($.ego.room != this.room) {
