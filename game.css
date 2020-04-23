@@ -281,8 +281,11 @@ span {
 .lower.floor {
   height: 60px;
   bottom: 0px;
-  /*background-color: rgb(97, 9, 109);*/
   background-color: rgb(97, 22, 22);
+  pointer-events: none;
+}
+.hallway .lower.floor {
+  display: none;
 }
 #lower_wall {
   width: 1920px;
@@ -431,7 +434,7 @@ span {
 
 #lower_left_door, #lower_right_door {
   bottom: 60px;
-  border-bottom: 31px solid var(--hall-floor-colour);
+  border-bottom: 31px solid var(--deck-floor-colour);
   height: 0;
   width: 190px;
   z-index: 5;
@@ -446,8 +449,8 @@ span {
   transform: skew(16deg);
   border-right: 8px solid transparent;
 }
-.deck #lower_left_door, .deck #lower_right_door {
-  border-bottom-color: var(--deck-floor-colour);
+.hallway #lower_left_door, .hallway #lower_right_door {
+  display: none;
 }
 
 /* ELEVATOR */
