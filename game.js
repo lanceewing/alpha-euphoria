@@ -134,6 +134,7 @@ $.Game = {
       // [62, 1, 'green_key', 18, 3, 455, 540, null, true],
 
       [19, 2, 'cupboard', 110, 80, 900, 400, null, false],
+      [19, 1, 'mask', 40, 30, 930, 386, null, true],
 
 
     ],
@@ -381,12 +382,8 @@ $.Game = {
       this.addPodsToRooms(6, 7, 8, 13, 14, 15, 16, 22, 23, 24, 29, 30, 31, 32, 38, 39, 40);
 
       // Starting inventory.
-      this.getItem('keycard');
-      this.getItem('bottle');
-      this.getItem('wrench');
-      this.getItem('computer manual');
-      this.getItem('rations');
-      this.getItem('plastic bucket');
+      //this.getItem('keycard');
+
       
       // Enter the starting room.
       this.newRoom();

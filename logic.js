@@ -10,26 +10,16 @@ $.Logic = {
     switch (verb) {
       case 'Pull':
         switch (thing) {
-          case 'reaper':
-            if (!$.roomData[11] || $.roomData[11] < 2) {
-              $.ego.moveTo($.reaper.x - 50, 550, function() {
-                $.reaper.ignore = false;
-                $.reaper.moveTo($.reaper.x - 70, $.reaper.z, function() { $.reaper.ignore = true; });
-                $.ego.moveTo($.reaper.x - 120, 550);
-                $.roomData[11] = ($.roomData[11]? 2 : 1);
-                $.Game.addToScore(15);
-              });
-            } else {
-              $.ego.say("I think I'll let him be now.", 220);
-            }
+          default:
+            $.ego.say("I can't pull that.", 230);
             break;
         }
         break;
 
       case 'Push':
         switch (thing) {
-          case 'reaper':
-            $.ego.say("Maybe I should try pulling.", 220);
+          default:
+            $.ego.say("I can't push that.", 230);
             break;
         }
         break;
@@ -90,18 +80,6 @@ $.Logic = {
             // Now walk through the door/path.
             $.ego.moveTo(e.target.offsetLeft + e.target.offsetWidth + 50, 1000);
             break;
-
-          case 'road':
-            $.ego.say("I should use the pedestrian crossing.", 220);
-            break;
-
-          case 'crossing':
-            $.Game.userInput = false;
-            $.ego.stop();
-            $.ego.moveTo((e.pageX / $.scaleX), ((e.pageY / $.scaleY) - 27) * 2, function() {
-              $.ego.moveTo($.ego.x, 1000);
-            });
-            break;
             
           default:
             $.ego.stop(true);
@@ -125,10 +103,6 @@ $.Logic = {
 
           case 'light beam':
             $.ego.say("A beam of sun light breaks through the mist.", 250);
-            break;
-
-          case 'time machine':
-            $.ego.say("It has a solar panel on it.", 250);
             break;
 
           case 'door':
@@ -300,6 +274,17 @@ $.Logic = {
             });
             break;
 
+          case 'pod':
+            // Walk to be in front of the pod
+            $.ego.moveTo(e.target.offsetLeft + (e.target.offsetWidth / 2), $.ego.z, function() {
+              if (e.target.classList.contains('open')) {
+                $.ego.say("The pod is already open.", 230);
+              } else {
+                e.target.classList.add('open');
+              }
+            });
+            break;
+
           case 'drain':
             $.ego.say("They won't budge.", 230);
             break;
@@ -333,6 +318,17 @@ $.Logic = {
             $.ego.moveTo(e.target.offsetLeft + (e.target.offsetWidth / 2), $.ego.z, function() {
               if (!e.target.classList.contains('open')) {
                 $.ego.say("The cupboard is already closed.", 230);
+              } else {
+                e.target.classList.remove('open');
+              }
+            });
+            break;
+
+          case 'pod':
+            // Walk to be in front of the pod
+            $.ego.moveTo(e.target.offsetLeft + (e.target.offsetWidth / 2), $.ego.z, function() {
+              if (!e.target.classList.contains('open')) {
+                $.ego.say("The pod is already closed.", 230);
               } else {
                 e.target.classList.remove('open');
               }
@@ -478,25 +474,14 @@ $.Logic = {
             default:
               // Is item in the current room?
               if ($[thingId] && $[thingId].item) {
-                // Ego can only hold max of two items, unless he has the backpack.
-                if ($.Game.hasItem('backpack') || (thing == 'backpack') || ($.items.children.length < 2)) {
-                  $.ego.moveTo($.ego.cx, 600, function() {
-                    $.ego.moveTo($[thingId].x, 600, function() {
-                      $.Game.getItem(thing);
-                      $[thingId].remove();
-                      $[thingId].propData[0] = 0;  // Clears the room number for the item.
-                      $.Game.addToScore(15);
-
-                      if (thing == 'backpack') {
-                        $.ego.pack = 'rgb(20, 30, 20)';
-                        $.ego.canvas = $.ego.buildCanvas();
-                        $.ego.say("Nice fit!", 150);
-                      }
-                    });
+                $.ego.moveTo($.ego.cx, 600, function() {
+                  $.ego.moveTo($[thingId].x, 600, function() {
+                    $.Game.getItem(thing);
+                    $[thingId].remove();
+                    $[thingId].propData[0] = 0;  // Clears the room number for the item.
+                    $.Game.addToScore(15);
                   });
-                } else {
-                  $.ego.say("My hands are full. I need a bag of some kind.", 220);
-                }
+                });
               }
               else {
                 $.ego.say("I can't get that.", 220);

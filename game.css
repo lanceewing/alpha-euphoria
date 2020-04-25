@@ -214,7 +214,7 @@ span {
   border-radius: 50%;
   background: lightgray;
   transform: translateX(-50%);
-  z-index: 1000;
+  z-index: 7;
   border: 2px solid dimgray;
   border-bottom: none;
   border-top: 3px solid #222;
@@ -224,14 +224,14 @@ span {
   content: "";
   position: absolute;
   transition: all 0.4s;
-  height: 220px;
+  height: 170px;
   width: 80px;
   top: 7px;
   left: 50%;
-  transform: translateX(-50%) perspective(400px) rotateX(45deg);
+  transform: translateX(-50%) perspective(400px) rotateX(73deg);
   transform-origin: top center;
   background: linear-gradient(0deg, transparent, rgba(255, 255, 255, 0.8));
-  z-index: 998;
+  z-index: 6;
 }
 .first.light {
   left: 245px;
@@ -953,6 +953,7 @@ span {
   border-radius: 18px;
   width: 65px !important;
   border-style: outset;
+  -webkit-box-reflect: below 0px -webkit-linear-gradient(bottom, rgba(255, 255, 255, 0.3) 0%, transparent 50%, transparent 100%);
 }
 .pod:after {
   left: -9px;
@@ -978,6 +979,7 @@ span {
   transform: rotateY(0deg);
   transition: transform 1.0s;
   transform-style: preserve-3d;
+  -webkit-box-reflect: below 0px -webkit-linear-gradient(bottom, rgba(255, 255, 255, 0.3) 0%, transparent 45%, transparent 100%);
 }
 .open.pod:before {
   transform: rotateY(180deg);
@@ -997,7 +999,7 @@ span {
     var(--cupboard-front-colour) 45%, 
     var(--cupboard-front-colour) 55%, 
     var(--cupboard-back-colour) 55%,
-    var(--cupboard-back-colour)95%, 
+    var(--cupboard-back-colour) 95%, 
     var(--cupboard-front-colour) 95% );
   box-shadow: 
     inset 5px 0 0px 0px #69342b, 
@@ -1042,4 +1044,22 @@ span {
 .cupboard.open:after {
   transform: rotateY(170deg);
   box-shadow: none;
+}
+.cupboard.open ~ #mask {
+  z-index: 401;
+  filter: brightness(1.0);
+  opacity: 1;
+}
+#mask {
+  z-index: 399;
+  transition: z-index 1000ms, filter 1000ms, opacity 1000ms;
+  filter: brightness(0.0);
+  transform: rotate3d(0, 0, 0, 0deg);
+  opacity: 0;
+}
+#mask:before {
+  content: '\1f93f';
+  font-size: 26px;
+  position: absolute;
+  bottom: -2px;
 }
