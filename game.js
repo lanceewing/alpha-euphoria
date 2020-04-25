@@ -113,7 +113,8 @@ $.Game = {
      * Boolean flags that remember when certain things have happened in the game.
      */
     flags: {
-      'gasLeakFixed' : false 
+      'gasLeakFixed' : false,
+      'powerFixed': false,
     },
 
     /**
@@ -305,12 +306,24 @@ $.Game = {
               fetch('./songs/STANDARD.BNK').then(function(res){
                   return res.arrayBuffer();
               }).then(function(standardBank){
-                  var player = new OPL3.Player(OPL3.format.ROL, {
-                      instruments: standardBank,
-                      prebuffer: 10000,
-                      volume: 3
-                  });
-                  player.play(rol);
+                  let playSong = new function() {
+                    $.Game.player = new OPL3.Player(OPL3.format.ROL, {
+                        instruments: standardBank,
+                        prebuffer: 10000,
+                        volume: 3
+                    });
+                    $.Game.player.play(rol);
+                    $.Game.player.on('position', function(currentPosition) {
+                      let percentage = currentPosition / $.Game.player.length;
+                      if (percentage >= 1) {
+                        // It seems that we can't pre-buffer on a second play of same player, so 
+                        // we create a new player and play again.
+                        setTimeout(function() {
+                          playSong();
+                        }, 100);
+                      }
+                    });
+                  }
               });
           });
 

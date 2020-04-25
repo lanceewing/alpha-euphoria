@@ -177,9 +177,14 @@ span {
   height: 430px;
   z-index: -2;
   width: 1920px;
+
+  /*filter: saturate(0.5);*/
 }
 #screen * {
   position: absolute;
+}
+.dark #screen {
+  filter: brightness(0.2);
 }
 .wall {
   top: 50px;
