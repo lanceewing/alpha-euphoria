@@ -109,31 +109,38 @@ $.Game = {
       [0x00, 0x00, 1920,     ,     ,     ,     ,     ,     ,   44,   44 ],  // 48
     ],
 
-    /*
-      8  - Door open
-      9  - Door unlocked
-      10 - Door colour
-      11 - Pulled reaper
-      12 - Reaper dead
-
-    */
-
     /**
      * Boolean flags that remember when certain things have happened in the game.
      */
-    flags: {},
+    flags: {
+      'gasLeakFixed' : false 
+    },
 
     /**
      * Props (things) that are in each room.
      */
     props: [
       
-      // Room#, type, name, width, height, x, y, element reference, zindex, colour
+      // Room#, type, name, width, height, x, y, element reference, unique?
+      // Other potential settings (not currently used): zindex, colour
       // types: 0 = actor, 1 = item, 2 = prop
 
       // [62, 1, 'green_key', 18, 3, 455, 540, null],
 
-      [17, 0, 'pod', 50, 150, 710, 540, null],
+      [21, 0, 'pod', 50, 150, 60,   540, null, false],
+      [21, 0, 'pod', 50, 150, 194,  540, null, false],
+      [21, 0, 'pod', 50, 150, 328,  540, null, false],
+      [21, 0, 'pod', 50, 150, 462,  540, null, false],
+      [21, 0, 'pod', 50, 150, 596,  540, null, false],
+      [21, 0, 'pod', 50, 150, 730,  540, null, false],
+      [21, 0, 'pod', 50, 150, 864,  540, null, false],
+      [21, 0, 'pod', 50, 150, 998,  540, null, false],
+      [21, 0, 'pod', 50, 150, 1132, 540, null, false],
+      [21, 0, 'pod', 50, 150, 1266, 540, null, false],
+      [21, 0, 'pod', 50, 150, 1400, 540, null, false],
+      [21, 0, 'pod', 50, 150, 1534, 540, null, false],
+      [21, 0, 'pod', 50, 150, 1668, 540, null, false],
+      [21, 0, 'pod', 50, 150, 1802, 540, null, false],
 
     ],
     
@@ -159,13 +166,6 @@ $.Game = {
      * The time in milliseconds since the current game started.
      */
     time: 0,
-
-    /**
-     * Boolean flags for game state.
-     */
-    flags: {
-      'gasLeakFixed' : false 
-    },
       
     /**
      * Scales the screen div to fit the whole screen.
@@ -354,7 +354,7 @@ $.Game = {
       
       // Set the room back to the start, and clear the object map.
       this.objs = [];
-      this.room = 17;
+      this.room = 21; //17;
       
       // Create Ego (the main character) and add it to the screen.
       $.ego = new Ego();
@@ -700,7 +700,6 @@ $.Game = {
               case 'pod':
                 obj = new Actor(prop[3], prop[4], 'black', 0.95, 10, 'black');
                 obj.setDirection(Sprite.OUT);
-                obj.ignore = true;
                 break;
             }
             obj.setPosition(prop[5], 0, prop[6]);
@@ -716,7 +715,7 @@ $.Game = {
             break;
         }
 
-        // If the id has a _ then use parts of id to add class names.
+        // If the name has a _ then use parts of id to add class names.
         if (prop[2].indexOf('_') > -1) {
           let parts = prop[2].split('_');
           for (let i=0; i<parts.length; i++) {
@@ -724,8 +723,16 @@ $.Game = {
           }
         }
 
-        $[prop[2]] = obj;
-        obj.elem.id = prop[2];
+        if (prop[8]) {
+          // If this is a unique object, then we set the id.
+          $[prop[2]] = obj;
+          obj.elem.id = prop[2];
+        } else {
+          // If this is not a unique object, then we set a class.
+          obj.elem.classList.add(prop[2]);
+        }
+        obj.elem.dataset.name = prop[2];
+
         obj.propData = prop;
         obj.add();
         obj.setPosition(prop[5], 0, prop[6]);
