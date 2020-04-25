@@ -289,6 +289,17 @@ $.Logic = {
     
       case 'Open':
         switch (thing) {
+          case 'cupboard':
+            // Walk to be in front of the cupboard
+            $.ego.moveTo(e.target.offsetLeft + (e.target.offsetWidth / 2), $.ego.z, function() {
+              if (e.target.classList.contains('open')) {
+                $.ego.say("The cupboard is already open.", 230);
+              } else {
+                e.target.classList.add('open');
+              }
+            });
+            break;
+
           case 'drain':
             $.ego.say("They won't budge.", 230);
             break;
@@ -317,6 +328,17 @@ $.Logic = {
         
       case 'Close':
         switch (thing) {
+          case 'cupboard':
+            // Walk to be in front of the cupboard
+            $.ego.moveTo(e.target.offsetLeft + (e.target.offsetWidth / 2), $.ego.z, function() {
+              if (!e.target.classList.contains('open')) {
+                $.ego.say("The cupboard is already closed.", 230);
+              } else {
+                e.target.classList.remove('open');
+              }
+            });
+            break;
+
           case 'door':
             if ($.roomData[8]) {
               $.ego.moveTo($.activeDoor.offsetLeft + ($.activeDoor.offsetWidth / 2), $.ego.z, function() {
