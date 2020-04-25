@@ -166,9 +166,9 @@ class Sprite extends Obj {
                     if (z > 667) edge = 10;
                 } else {
                     if (z > 740) {
-                        if (x < 0) {
+                        if (x < 80) {
                             edge = 2;   // Left path
-                        } else if (x > 1850) {
+                        } else if (x > 1740) {
                             edge = 5;   // Right path
                         } else if (x > 960) {
                             edge = 7;   // Right door down

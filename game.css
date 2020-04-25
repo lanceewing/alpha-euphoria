@@ -667,7 +667,7 @@ span {
   display: none;
 }
 
-.hallway .left.path {
+.hallway .left.corridor {
   left: 0px;
   width: 0;
   height: 0;
@@ -675,7 +675,7 @@ span {
   border-top: 90px solid var(--hall-floor-colour);
   border-right: 100px solid transparent;
 }
-.hallway .right.path {
+.hallway .right.corridor {
   left: 1820px;
   width: 0;
   height: 0;
@@ -685,7 +685,7 @@ span {
   /* Small hack required for Chrome. Not required in Firefox. */
   transform: rotate3d(0, 0, 0, 0deg);
 }
-.path {
+.corridor {
   width: 100px;
   height: 255px;
   top: 0px;

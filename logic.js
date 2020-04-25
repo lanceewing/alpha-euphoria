@@ -63,21 +63,21 @@ $.Logic = {
             });
             break;
 
-          case 'left path':
+          case 'left corridor':
             $.Game.userInput = false;
             $.ego.stop();
-            // Walk to be in front of the door/path.
+            // Walk to be in front of the corridor.
             $.ego.moveTo(e.target.offsetLeft + (e.target.offsetWidth / 2), $.ego.z);
-            // Now walk through the door/path.
+            // Now walk through the corridor.
             $.ego.moveTo(e.target.offsetLeft - 50, 1000);
             break;
 
-          case 'right path':
+          case 'right corridor':
             $.Game.userInput = false;
             $.ego.stop();
-            // Walk to be in front of the door/path.
+            // Walk to be in front of the corridor.
             $.ego.moveTo(e.target.offsetLeft + (e.target.offsetWidth / 2), $.ego.z);
-            // Now walk through the door/path.
+            // Now walk through the corridor.
             $.ego.moveTo(e.target.offsetLeft + e.target.offsetWidth + 50, 1000);
             break;
             
@@ -96,35 +96,17 @@ $.Logic = {
       case 'Look at':
         switch (thing) {
 
-          case 'left path':
-          case 'right path':
-            $.ego.say("The path makes a 90 degree turn around the corner.", 250);
+          case 'left corridor':
+          case 'right corridor':
+            $.ego.say("The corridor makes a 90 degree turn around the corner.", 250);
             break;
 
-          case 'light beam':
-            $.ego.say("A beam of sun light breaks through the mist.", 250);
+          case 'light':
+            $.ego.say("The lights illuminate the room.", 250);
             break;
 
           case 'door':
-            if ($.Game.room == 40) {
-              $.ego.say("This black door looks vaguely familiar.", 250);
-            } else {
-              if ($.roomData[8]) {
-                $.ego.say("The door is open.", 250);
-              } else {
-                $.ego.say("The door is closed.", 250);
-              }
-            }
-            break;
-
-          case 'ghost':
-            if ($.roomData[12]) {
-              $.ego.say("The old reaper told me I'm the reason they're dead.", 250);
-            } else {
-              $.ego.say("Why do I feel like I'm the reason they're ghosts?", 250, function() {
-                $.ego.say("Why is everyone dead?", 200);
-              });
-            }
+            $.ego.say("It is an automatic door.", 250);
             break;
 
           case 'mist':
@@ -274,6 +256,10 @@ $.Logic = {
             });
             break;
 
+          case 'elevator':
+            $.ego.say("Try walking there.", 230);
+            break;
+
           case 'pod':
             // Walk to be in front of the pod
             $.ego.moveTo(e.target.offsetLeft + (e.target.offsetWidth / 2), $.ego.z, function() {
@@ -284,25 +270,9 @@ $.Logic = {
               }
             });
             break;
-
-          case 'drain':
-            $.ego.say("They won't budge.", 230);
-            break;
             
           case 'door':
-            // Walk to be in front of the door/path.
-            $.ego.moveTo($.activeDoor.offsetLeft + ($.activeDoor.offsetWidth / 2), $.ego.z, function() {
-              if ($.roomData[9] || $.inside) {  // Unlocked
-                if ($.roomData[8]) {
-                  $.ego.say("The door is already open.", 230);
-                } else {
-                  $.activeDoor.children[0].style.transform = ($.inside? "rotateY(180deg)" : "rotateY(-45deg)");
-                  $.roomData[8] = true;
-                }
-              } else {
-                $.ego.say("The door is locked.", 230);
-              }
-            });
+            $.ego.say("Try walking there.", 230);
             break;
             
           default:
