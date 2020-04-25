@@ -306,26 +306,21 @@ $.Game = {
               fetch('./songs/STANDARD.BNK').then(function(res){
                   return res.arrayBuffer();
               }).then(function(standardBank){
-                  let playSong = function() {
-                    $.Game.player = new OPL3.Player(OPL3.format.ROL, {
-                        instruments: standardBank,
-                        prebuffer: 10000,
-                        volume: 3
-                    });
-                    $.Game.player.play(rol);
-                    $.Game.player.on('position', function(currentPosition) {
-                      let percentage = currentPosition / $.Game.player.length;
-                      if (percentage >= 1) {
-                        // It seems that we can't pre-buffer on a second play of same player, so 
-                        // we create a new player and play again.
-                        setTimeout(function() {
-                          playSong();
-                        }, 100);
-                      }
-                    });
-                  };
-                  // First play.
-                  playSong();
+                  $.Game.player = new OPL3.Player(OPL3.format.ROL, {
+                      instruments: standardBank,
+                      prebuffer: 10000,
+                      volume: 3,
+                      bufferSize: 128
+                  });
+                  $.Game.player.play(rol);
+                  $.Game.player.on('position', function(currentPosition) {
+                    let percentage = currentPosition / $.Game.player.length;
+                    if (percentage >= 1) {
+                      setTimeout(function() {
+                        $.Game.player.seek(0);
+                      }, 100);
+                    }
+                  });
               });
           });
 
@@ -660,7 +655,13 @@ $.Game = {
       
       let inHall = ($.roomData[0] & 0x01);
       let onDeck = !inHall;
-      $.screenWrap.className = (onDeck? 'deck ' : 'hallway ') + 'side' + $.ego.nesw + ' level' + this.level + ' room' + this.room + ' ';
+      $.screenWrap.className = 
+        (onDeck? 'deck ' : 'hallway ') + 
+        'side' + $.ego.nesw + 
+        ' level' + this.level + 
+        ' room' + this.room + 
+        (((this.level == 2) && !this.flags['powerFixed'])? ' dark' : '')
+        ' ';
 
       // If we're on deck, open the doors so that when ego walks back into the hallway, they'll
       // start by being open and then will close.
