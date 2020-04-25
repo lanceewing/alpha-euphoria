@@ -616,7 +616,7 @@ span {
 }
 
 /* WINDOWS */
-.deck.level4 .wall {
+.deck.level6 .wall, .deck.level5.side1, .deck.level3.side1, .deck.level1.side1 {
   clip-path: polygon( 
     0 0, 1920px 0, 1920px 209px, 0 209px, 
     0 0, 
@@ -658,7 +658,20 @@ span {
 .fifth.window {
   left: 1650px;
 }
-.hallway .window, .level1 .window, .level2 .window, .level3 .window {
+
+/* Hide windows for certain rooms */
+.level1.side0 .window,
+.level1.side2 .window,
+.level1.side3 .window,
+.level2 .window,
+.level3.side0 .window,
+.level3.side2 .window,
+.level3.side3 .window, 
+.level4 .window,
+.level5.side0 .window,
+.level5.side2 .window,
+.level5.side3 .window,
+.hallway .window {
   display: none;
 }
 
@@ -970,6 +983,10 @@ span {
   border-style: outset;
   border-width: 5px;
   transform-origin: left;
+  transform: rotateY(0deg);
+  transition: transform 1.0s;
+  transform-style: preserve-3d;
+}
+.open.pod:before {
   transform: rotateY(180deg);
 }
-

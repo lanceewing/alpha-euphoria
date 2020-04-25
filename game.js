@@ -125,22 +125,10 @@ $.Game = {
       // Other potential settings (not currently used): zindex, colour
       // types: 0 = actor, 1 = item, 2 = prop
 
-      // [62, 1, 'green_key', 18, 3, 455, 540, null],
+      // [62, 1, 'green_key', 18, 3, 455, 540, null, true],
 
-      [21, 0, 'pod', 50, 150, 60,   540, null, false],
-      [21, 0, 'pod', 50, 150, 194,  540, null, false],
-      [21, 0, 'pod', 50, 150, 328,  540, null, false],
-      [21, 0, 'pod', 50, 150, 462,  540, null, false],
-      [21, 0, 'pod', 50, 150, 596,  540, null, false],
-      [21, 0, 'pod', 50, 150, 730,  540, null, false],
-      [21, 0, 'pod', 50, 150, 864,  540, null, false],
-      [21, 0, 'pod', 50, 150, 998,  540, null, false],
-      [21, 0, 'pod', 50, 150, 1132, 540, null, false],
-      [21, 0, 'pod', 50, 150, 1266, 540, null, false],
-      [21, 0, 'pod', 50, 150, 1400, 540, null, false],
-      [21, 0, 'pod', 50, 150, 1534, 540, null, false],
-      [21, 0, 'pod', 50, 150, 1668, 540, null, false],
-      [21, 0, 'pod', 50, 150, 1802, 540, null, false],
+
+
 
     ],
     
@@ -354,7 +342,7 @@ $.Game = {
       
       // Set the room back to the start, and clear the object map.
       this.objs = [];
-      this.room = 21; //17;
+      this.room = 17; //21; //17;
       
       // Create Ego (the main character) and add it to the screen.
       $.ego = new Ego();
@@ -364,6 +352,9 @@ $.Game = {
       // Add actors into the rooms.
       // TODO: Change this to handle crew???
       this.addActors(200);
+
+      // Add pods to all the rooms that have them.
+      this.addPodsToRooms(6, 7, 8, 13, 14, 15, 16, 22, 23, 24, 29, 30, 31, 32, 38, 39, 40);
 
       // Starting inventory.
       this.getItem('keycard');
@@ -576,6 +567,33 @@ $.Game = {
     },
     
     /**
+     * Adds the stasis pods to the given rooms.
+     * 
+     * @param {*} rooms The numbers of the rooms to add the cryo stasis pods to.
+     */
+    addPodsToRooms: function(...rooms) {
+      rooms.forEach(room => {
+        let pods = [
+          [room, 0, 'pod', 50, 150, 60,   540, null, false],
+          [room, 0, 'pod', 50, 150, 194,  540, null, false],
+          [room, 0, 'pod', 50, 150, 328,  540, null, false],
+          [room, 0, 'pod', 50, 150, 462,  540, null, false],
+          [room, 0, 'pod', 50, 150, 596,  540, null, false],
+          [room, 0, 'pod', 50, 150, 730,  540, null, false],
+          [room, 0, 'pod', 50, 150, 864,  540, null, false],
+          [room, 0, 'pod', 50, 150, 998,  540, null, false],
+          [room, 0, 'pod', 50, 150, 1132, 540, null, false],
+          [room, 0, 'pod', 50, 150, 1266, 540, null, false],
+          [room, 0, 'pod', 50, 150, 1400, 540, null, false],
+          [room, 0, 'pod', 50, 150, 1534, 540, null, false],
+          [room, 0, 'pod', 50, 150, 1668, 540, null, false],
+          [room, 0, 'pod', 50, 150, 1802, 540, null, false]
+        ];
+        this.props.push(...pods);
+      });
+    },
+
+    /**
      * Adds actors to the game.
      */
     addActors: function(numOfActors) {
@@ -627,7 +645,7 @@ $.Game = {
       
       let inHall = ($.roomData[0] & 0x01);
       let onDeck = !inHall;
-      $.screenWrap.className = (onDeck? 'deck ' : 'hallway ') + 'side' + $.ego.nesw + ' level' + this.level + ' ';
+      $.screenWrap.className = (onDeck? 'deck ' : 'hallway ') + 'side' + $.ego.nesw + ' level' + this.level + ' room' + this.room + ' ';
 
       // If we're on deck, open the doors so that when ego walks back into the hallway, they'll
       // start by being open and then will close.
