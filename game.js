@@ -133,6 +133,8 @@ $.Game = {
 
       // [62, 1, 'green_key', 18, 3, 455, 540, null],
 
+      [17, 0, 'pod', 50, 150, 710, 540, null],
+
     ],
     
     actors: [],
@@ -625,7 +627,7 @@ $.Game = {
       
       let inHall = ($.roomData[0] & 0x01);
       let onDeck = !inHall;
-      $.screenWrap.className = (onDeck? 'deck ' : 'hallway ') + 'side' + $.ego.nesw + ' ';
+      $.screenWrap.className = (onDeck? 'deck ' : 'hallway ') + 'side' + $.ego.nesw + ' level' + this.level + ' ';
 
       // If we're on deck, open the doors so that when ego walks back into the hallway, they'll
       // start by being open and then will close.
@@ -695,9 +697,9 @@ $.Game = {
         switch (prop[1]) {
           case 0: // Actor
             switch (prop[2]) {
-              case 'reaper':
+              case 'pod':
                 obj = new Actor(prop[3], prop[4], 'black', 0.95, 10, 'black');
-                obj.setDirection(Sprite.LEFT);
+                obj.setDirection(Sprite.OUT);
                 obj.ignore = true;
                 break;
             }

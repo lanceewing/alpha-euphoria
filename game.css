@@ -285,6 +285,9 @@ span {
   pointer-events: none;
 }
 .hallway .lower.floor {
+  background-color: rgb(20, 10, 10);
+}
+.hallway.level1 .lower.floor {
   display: none;
 }
 #lower_wall {
@@ -937,4 +940,22 @@ span {
   40%, 60% {
     transform: translate(4px, 0);
   }
+}
+
+#pod {
+  border: 5px solid #333333;
+  box-shadow: inset blue 0px 0px 17px 3px;
+  border-radius: 18px;
+  width: 60px !important;
+}
+#pod:after {
+  content: "";
+  height: 82px;
+  width: 60px;
+  background: rgb(140, 253, 201);
+  opacity: 0.3;
+  border-radius: 0%;
+  left: -5px;
+  bottom: -5px;
+  box-shadow: inset 0 0 5px #000;
 }
