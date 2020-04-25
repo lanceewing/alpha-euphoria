@@ -157,10 +157,11 @@ class Sprite extends Obj {
                 
                 if ($.Game.userInput || (this != $.ego)) {
                     // Check whether a room edge has been hit.
-                    if (x < 0) edge = 1;
-                    if ((x + this.width) > $.roomData[2]) { 
-                        edge = 6; 
-                    }
+                    // TODO: We don't need left and right edge exits, and there's a bug in here anyway.
+                    //if (x < 0) edge = 1;
+                    //if ((x + this.width) > $.roomData[2]) { 
+                    //    edge = 6; 
+                    //}
                     // This edge number is simply to stop ego. He won't leave the room.
                     if (z > 667) edge = 10;
                 } else {
