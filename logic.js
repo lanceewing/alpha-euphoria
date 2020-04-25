@@ -59,14 +59,14 @@ $.Logic = {
 
           case 'elevator':
             $.Game.userInput = false;
-            $.ego.stop();
+            $.ego.stop(true);
             // Walk to be in front of the elevator.
             $.ego.moveTo(e.target.offsetLeft + (e.target.offsetWidth / 2), $.ego.z, function() {
               $.Sound.play('ting');
               e.target.classList.add('open');
             });
             // Now walk through the elevator door.
-            $.ego.moveTo(e.target.offsetLeft + (e.target.offsetWidth / 2), 510, function() {
+            $.ego.moveTo(e.target.offsetLeft + (e.target.offsetWidth / 2), 520, function() {
               $.screenWrap.style.opacity = 0.5;
               $.elevatorPanel.style.display = 'block';
             });
