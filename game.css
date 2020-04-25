@@ -457,7 +457,7 @@ span {
 }
 
 /* ELEVATOR */
-.deck #elevator_sign {
+.deck #elevator_sign, .hallway.side0 #elevator_sign, .hallway.side2 #elevator_sign, .hallway.side3 #elevator_sign {
   display: none;
 }
 #elevator_sign {
@@ -611,7 +611,7 @@ span {
 #elevator.open:after{
   right: -100px;
 }
-.deck #elevator {
+.deck #elevator, .hallway.side0 #elevator, .hallway.side2 #elevator, .hallway.side3 #elevator {
   display: none;
 }
 
