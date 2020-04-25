@@ -260,7 +260,7 @@ span {
   content: "";
   position: absolute;
   transition: all 0.4s;
-  height: 250px;
+  height: 220px;
   width: 80px;
   top: 7px;
   left: 50%;
@@ -268,6 +268,27 @@ span {
   transform-origin: top center;
   background: linear-gradient(0deg, transparent, rgba(255, 255, 255, 0.8));
   z-index: 998;
+}
+.first.light {
+  left: 245px;
+}
+.second.light {
+  left: 708px;
+}
+.third.light {
+  left: 1205px;
+}
+.fourth.light {
+  left: 1668px;
+}
+.room5 .light:not(.first):not(.fourth),
+.room21 .light:not(.first):not(.fourth),
+.room37 .light:not(.first):not(.fourth),
+.room45 .light:not(.first):not(.fourth),
+.room46 .light:not(.first):not(.fourth),
+.room47 .light:not(.first):not(.fourth),
+.room48 .light:not(.first):not(.fourth) {
+  display: none;
 }
 .floor {
   bottom: 90px;
