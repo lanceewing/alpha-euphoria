@@ -190,7 +190,9 @@ class Sprite extends Obj {
                 if (z < 500) {
                     // Ego has now reached the horizon, so time for a room change. The x value
                     // tells us which exit it was.
-                    edge = (x < 960? 3 : 4);
+                    if (!$.Game.ignoreHorizon) {
+                        edge = (x < 960? 3 : 4);
+                    }
                 }
                 
                 // 1 = left edge

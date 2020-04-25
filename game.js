@@ -20,6 +20,11 @@ $.Game = {
     userInput: true,
 
     /**
+     * Whether ego should ignore horizon or not.
+     */
+    ignoreHorizon: false,
+
+    /**
      * The current level on the space station.
      */
     level: 3,
@@ -236,15 +241,23 @@ $.Game = {
           $.ego.room = $.Game.room;
           $.elevatorPanel.style.display = 'none';
           $.ego.setDirection(Sprite.OUT);
-          $.Game.fadeOut($.screenWrap);
+          if (floorDiff != 0) {
+            $.Game.fadeOut($.screenWrap);
+          }
           setTimeout(function() {
-            $.Game.setLevel(floor);
-            $.Game.newRoom();
+            if (floorDiff != 0) {
+              $.Game.setLevel(floor);
+              $.Game.newRoom();
+            } else {
+              $.Game.fadeIn($.screenWrap);
+            }
             $.ego.moveTo($.ego.x, 600, function() {
               $.elevator.classList.remove('open');
               $.Game.userInput = true;
+              $.Game.ignoreHorizon = false;
             });
-          }, 500);
+          }, floorDiff != 0? 500 : 1);
+          if (e) e.stopPropagation();
         };
       }
       
@@ -569,11 +582,13 @@ $.Game = {
     processCommand: function(e) {
       if (this.userInput && !this._gameOver) {
         this.command = $.Logic.process(this.verb, this.command, this.thing, e);
-        if (e) e.stopPropagation();
+        //if (e) e.stopPropagation();
         if (this.command == this.verb) {
           this.command = this.verb = 'Walk to';
         }
       }
+      // TODO: Why didn't I have this here when userInput was disabled?
+      if (e) e.stopPropagation();
     },
     
     /**
