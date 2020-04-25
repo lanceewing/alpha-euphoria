@@ -306,7 +306,7 @@ $.Game = {
               fetch('./songs/STANDARD.BNK').then(function(res){
                   return res.arrayBuffer();
               }).then(function(standardBank){
-                  let playSong = new function() {
+                  let playSong = function() {
                     $.Game.player = new OPL3.Player(OPL3.format.ROL, {
                         instruments: standardBank,
                         prebuffer: 10000,
@@ -323,7 +323,9 @@ $.Game = {
                         }, 100);
                       }
                     });
-                  }
+                  };
+                  // First play.
+                  playSong();
               });
           });
 
