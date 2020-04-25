@@ -616,7 +616,7 @@ span {
 }
 
 /* WINDOWS */
-.deck.level6 .wall, .deck.level5.side1, .deck.level3.side1, .deck.level1.side1 {
+.deck.level6 .wall, .deck.level5.side1 .wall, .deck.level3.side1 .wall, .deck.level1.side1 .wall {
   clip-path: polygon( 
     0 0, 1920px 0, 1920px 209px, 0 209px, 
     0 0, 
