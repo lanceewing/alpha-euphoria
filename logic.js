@@ -259,15 +259,7 @@ $.Logic = {
             break;
 
           case 'door':
-            if ($.roomData[8]) {
-              $.ego.moveTo($.activeDoor.offsetLeft + ($.activeDoor.offsetWidth / 2), $.ego.z, function() {
-                $.activeDoor.children[0].style.transform = "";
-                $.roomData[8] = false;
-              });
-            }
-            else {
-              $.ego.say("It is already closed.", 220);
-            }
+            $.ego.say("It's an automatic door.", 220);
             break;
             
           default:
@@ -386,6 +378,46 @@ $.Logic = {
           }
           
           newCommand = verb;
+        }
+        break;
+
+      case 'Put on':
+        switch (thing) {
+          case 'breathing mask':
+            if ($.Game.hasItem('breathing mask')) {
+              if ($.ego.elem.classList.contains('mask')) {
+                $.ego.say("I'm already wearing it.", 230);
+              } else {
+                $.ego.elem.classList.add('mask');
+              }
+            } else {
+              $.ego.say("Maybe I should pick it up first.", 230);
+            }
+            break;
+            
+          default:
+            $.ego.say("I can't wear that.", 230);
+            break;
+        }
+        break;
+
+      case 'Take off':
+        switch (thing) {
+          case 'breathing mask':
+            if ($.Game.hasItem('breathing mask')) {
+              if ($.ego.elem.classList.contains('mask')) {
+                $.ego.elem.classList.remove('mask');
+              } else {
+                $.ego.say("I'm not wearing the mask.", 230);
+              }
+            } else {
+              $.ego.say("I don't have the mask yet.", 230);
+            }
+            break;
+
+          default:
+            $.ego.say("I'm not wearing that.", 230);
+            break;
         }
         break;
         

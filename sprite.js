@@ -116,6 +116,8 @@ class Sprite extends Obj {
      * @param {number} direction A bit mask that identifies the new direction of the Sprite.
      */
     setDirection(direction) {
+        let oldFacing = this.facing;
+
         if (direction && direction != this.direction) {
             this.directionLast = this.direction;
             this.direction = direction;
@@ -125,6 +127,11 @@ class Sprite extends Obj {
             for (var facing = 0; facing <= 4 && !((direction >> facing++) & 1););
             
             this.facing = facing;
+        }
+
+        if (oldFacing != this.facing) {
+            this.elem.classList.remove('facing' + oldFacing);
+            this.elem.classList.add('facing' + this.facing);
         }
   
         // If the canvas width is greater than the Sprite width, it means that the sprite
