@@ -41,6 +41,50 @@ $.Logic = {
             });
             break;
 
+          case 'button':
+            if ($.Game.room == 27) {
+              if ($.Game.flags.gasLeakFixed) {
+                $.ego.say("I have already vented the gas.", 230);
+              } else {
+                $.ego.moveTo(e.target.offsetLeft + (e.target.offsetWidth / 2), $.ego.z, function() {
+                  $.ego.say("I hear a sucking noise....", 250, function () {
+                    $.Game.flags.gasLeakFixed = true;
+                    let audio = new SpeechSynthesisUtterance('Venting gas from level 4');
+                    var voices = window.speechSynthesis.getVoices();
+                    audio.voice = voices.filter(function(voice) { return voice.name.includes('Zira'); })[0];
+                    audio.pitch = 1;
+                    audio.rate = 1;
+                    audio.volume = 0.5;
+                    window.speechSynthesis.speak(audio);
+                    $.Game.addToScore(15);
+                    $.Game.userInput = true;
+                  });
+                });
+              }
+            } else if ($.Game.room == 35) {
+              if ($.Game.flags.powerFixed) {
+                $.ego.say("I have already restored power.", 230);
+              } else {
+                $.ego.moveTo(e.target.offsetLeft + (e.target.offsetWidth / 2), $.ego.z, function() {
+                  $.ego.say("I hear a humming noise....", 250, function () {
+                    $.Game.flags.powerFixed = true;
+                    let audio = new SpeechSynthesisUtterance('Power restored to level 2');
+                    var voices = window.speechSynthesis.getVoices();
+                    audio.voice = voices.filter(function(voice) { return voice.name.includes('Zira'); })[0];
+                    audio.pitch = 1;
+                    audio.rate = 1;
+                    audio.volume = 0.5;
+                    window.speechSynthesis.speak(audio);
+                    $.Game.addToScore(15);
+                    $.Game.userInput = true;
+                    $.Game.fadeOut($.mist);
+                    //$.mist.style.display = none;
+                  });
+                });
+              }
+            }
+            break;
+
           default:
             $.ego.say("I can't push that.", 230);
             break;
@@ -143,6 +187,13 @@ $.Logic = {
           break;
         }
         switch (thing) {
+          case 'button':
+            if ($.Game.room == 35) {
+              $.ego.say("The button says \"Power restoration\".", 300);
+            } else if ($.Game.room == 27) {
+              $.ego.say("The button says \"Vent gas\".", 300);
+            }
+            break;
 
           case 'left corridor':
           case 'right corridor':
