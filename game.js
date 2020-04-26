@@ -137,7 +137,7 @@ $.Game = {
       [19, 2, 'cupboard', 110, 80, 900, 400, null, false],
       [19, 1, 'breathing_mask', 40, 30, 930, 386, null, true],
 
-      [23, 1, 'green_key', 18, 3, 420, 535, null, true],
+      [7, 1, 'green_key', 18, 3, 420, 535, null, true],
 
     ],
     
@@ -360,7 +360,7 @@ $.Game = {
       
       // Set the room back to the start, and clear the object map.
       this.objs = [];
-      this.room = 23;// 19; // 17; //21; //17;
+      this.room = 7;//23;// 19; // 17; //21; //17;
       
       // Starting inventory.
       this.getItem('pod remote');

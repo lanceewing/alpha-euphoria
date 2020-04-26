@@ -153,6 +153,10 @@ $.Logic = {
             $.ego.say("The lights illuminate the room.", 250);
             break;
 
+          case 'green key':
+            $.ego.say("I wonder what this key opens.", 250);
+            break;
+
           case 'door':
             $.ego.say("It is an automatic door.", 250);
             break;
@@ -366,6 +370,10 @@ $.Logic = {
                       $.ego.say("The cupboard is already unlocked.", 230);
                     }
                   });
+                  break;
+
+                case 'pod':
+                  $.ego.say("The cryosleep pod does not have a key hole.", 250);
                   break;
 
                 default:
