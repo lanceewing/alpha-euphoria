@@ -122,6 +122,7 @@ $.Game = {
       'powerFixed' : false,
       'podWarning' : false,
       'putOnMask' : false,
+      'cupboardUnlocked' : false,
     },
 
     /**

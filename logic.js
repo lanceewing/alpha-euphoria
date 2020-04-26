@@ -264,7 +264,9 @@ $.Logic = {
           case 'cupboard':
             // Walk to be in front of the cupboard
             $.ego.moveTo(e.target.offsetLeft + (e.target.offsetWidth / 2), $.ego.z, function() {
-              if (e.target.classList.contains('open')) {
+              if (!$.Game.flags.cupboardUnlocked) {
+                $.ego.say("The cupboard is locked.", 230);
+              } else if (e.target.classList.contains('open')) {
                 $.ego.say("The cupboard is already open.", 230);
               } else {
                 e.target.classList.add('open');
@@ -352,24 +354,16 @@ $.Logic = {
             if ($.Game.hasItem(thing2)) {
               // Using a key.
               switch (thing) {
-                case 'door':
-                  $.ego.moveTo($.activeDoor.offsetLeft + ($.activeDoor.offsetWidth / 2), $.ego.z, function() {
-                    if ($.roomData[9] || $.inside) {
-                      $.ego.say("I don't want to lock it again.", 220);
+                case 'cupboard':
+                  // Walk to be in front of the cupboard
+                  $.ego.moveTo(e.target.offsetLeft + (e.target.offsetWidth / 2), $.ego.z, function() {
+                    if (!$.Game.flags.cupboardUnlocked) {
+                      $.ego.say("The cupboard is now unlocked.", 230);
+                      $.Game.addToScore(15);
+                      $.Game.flags.cupboardUnlocked = true;
+
                     } else {
-                      let keyRooms = {'green key': 41, 'black key': 40};
-                      if (keyRooms[thing2] == $.Game.room) {
-                        if ((thing2 == 'black key') && ($.Game.year == 2030)) {
-                          $.ego.say("It's the right key, but someone has recently damaged the lock. The key won't go in.", 370);
-                        } else {
-                          // The key is for this door.
-                          $.roomData[9] = true;
-                          $.ego.say("The door is now unlocked.", 220);
-                          $.Game.addToScore(15);
-                        }
-                      } else {
-                        $.ego.say("It's the wrong key for this door.", 220);
-                      }
+                      $.ego.say("The cupboard is already unlocked.", 230);
                     }
                   });
                   break;
