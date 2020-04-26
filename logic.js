@@ -127,6 +127,10 @@ $.Logic = {
         break;
     
       case 'Look at':
+        if (($.Game.level == 2) && (!$.Game.flags.powerFixed)) {
+          $.ego.say("This is dangerous. I can't see anything.", 250);
+          break;
+        }
         switch (thing) {
 
           case 'left corridor':
