@@ -24,6 +24,17 @@ $.Logic = {
 
       case 'Push':
         switch (thing) {
+          case 'pod remote':
+            if (!$.Game.flags.gasLeakFixed || !$.Game.flags.powerFixed) {
+              $.ego.say("It is too unsafe to wake my crew members.", 250, function() {
+                $.ego.say("I need to fix the gas leak on level 4, and the power failure on level 2.", 350);
+              });
+            } else {
+              // TODO: You've won!!
+
+            }
+            break;
+
           case 'pod':
             $.ego.moveTo(e.target.offsetLeft + (e.target.offsetWidth / 2), $.ego.z, function() {
               $.ego.say("It won't budge.", 230);
@@ -144,6 +155,10 @@ $.Logic = {
 
           case 'door':
             $.ego.say("It is an automatic door.", 250);
+            break;
+
+          case 'pod remote':
+            $.ego.say("It's a remote control for safely opening all the cryosleep pods.", 300);
             break;
 
           case 'pod':
@@ -358,18 +373,17 @@ $.Logic = {
             }
 
           } else {
-            if (thing2 == 'touch of death') {
+            if (thing2 == 'pod remote') {
               switch (thing) {
-                case 'me':
-                  $.ego.say("It doesn't work on me.", 200);
-                  break;
-
-                case 'reaper':
-                  $.ego.say("Strange... It doesn't work on him.", 200);
-                  break;
-
-                case 'ghost':
-                  $.ego.say("They're already dead.", 200);
+                case 'pod':
+                  if (!$.Game.flags.gasLeakFixed || !$.Game.flags.powerFixed) {
+                    $.ego.say("It is too unsafe to wake my crew members.", 250, function() {
+                      $.ego.say("I need to fix the gas leak on level 4, and the power failure on level 2.", 350);
+                    });
+                  } else {
+                    // TODO: You've won!!
+      
+                  }
                   break;
                 
                 default:
@@ -377,33 +391,8 @@ $.Logic = {
                   break;
               }
             }
-            else if (thing2 == 'time machine') {
-              switch (thing) {
-                case 'light beam':
-                  $.ego.moveTo(e.target.offsetLeft + (e.target.offsetWidth / 2), $.ego.z, function() {
-                    $.ego.say("The time machine is charging...", 220, function() {
-                      $.Game.addToScore(15);
-                      $.ego.elem.style.opacity = 0.5;
-                      $.ego.say("Hey! Wait! What is it doing to me?.", 220, function() {
-                        $.Game.fadeOut($.ego.elem);
-                        setTimeout(function() {
-                          $.Game.initActors();
-                          $.ego.year = 2025;
-                          $.Game.userInput = true;
-                        }, 500);
-                      });
-                    });
-                  });
-                  break;
-
-                case 'mist':
-                  $.ego.say("There isn't enough light coming through the mist.", 300);
-                  break;
-                
-                default:
-                  $.ego.say("Nothing happened.", 220);
-                  break;
-              }
+            if (thing2 == 'breathing mask') {
+              $.ego.say("Nothing happened.", 220);
             }
           }
 
