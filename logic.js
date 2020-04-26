@@ -149,7 +149,9 @@ $.Logic = {
           case 'pod':
             $.ego.say("It's a cryosleep chamber containg one of my crew members.", 300, function() {
               if (e.target.classList.contains('open')) {
-                $.ego.say("Some fool has opened the door already.", 250);
+                $.ego.say("Some fool has manually opened the door.", 250, function() {
+                  $.ego.say("I guess this guy will die now.", 250);
+                });
               } else {
                 $.Game.userInput = true;
               }

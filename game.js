@@ -360,13 +360,16 @@ $.Game = {
       
       // Set the room back to the start, and clear the object map.
       this.objs = [];
-      this.room = 21;//19; // 17; //21; //17;
+      this.room = 23;// 19; // 17; //21; //17;
       
+      // Starting inventory.
+      this.getItem('pod remote');
+
       // Create Ego (the main character) and add it to the screen.
       $.ego = new Ego();
       $.ego.add();
       $.ego.setPosition(234, 0, 600);
-      $.ego.nesw = 1;//3;  // "ΔΘΣΩ"[$.ego.nesw]
+      $.ego.nesw = 3;  // "ΔΘΣΩ"[$.ego.nesw]
 
       // Add actors into the rooms.
       // TODO: Change this to handle crew???

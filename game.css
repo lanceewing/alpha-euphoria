@@ -1092,3 +1092,29 @@ span {
 #me.mask.facing3 .wearing:before {
   display: none;
 }
+
+.green, .green.key::before, .green.key::after  {
+  background-color: #146b07
+}
+.black, .black.key::before, .black.key::after {
+  background-color: black;
+}
+.key::before {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  top: -2px;
+  left: -4px;
+  border-radius: 4px;
+}
+.key::after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  width: 6px;
+  height: 5px;
+  top: 0px;
+  left: 17px;
+}
