@@ -295,9 +295,9 @@ $.Game = {
       this.fadeIn($.msg);
       if (!msg) {
         window.onclick = function(e) {
-          //if (document.fullscreenEnabled) {
-          //  document.documentElement.requestFullscreen();
-          //}
+          if (document.fullscreenEnabled) {
+           document.documentElement.requestFullscreen();
+          }
           $.Game.fadeOut($.msg);
           setTimeout(function() {
             $.msg.style.display = 'none';
