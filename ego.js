@@ -6,12 +6,30 @@ class Ego extends Actor {
      * should be only one instance of this class.
      */
     constructor() {
-        //$.Actor.call(this, 50, 150, 'grey', 0.95, 5, 'white', 'grey', 'red');
-        super(50, 150, 'grey', 0.95, 5, 'white', 'grey', 'red');//'rgb(20, 30, 20)');
+        super(50, 150, 'grey', 0.95, 5, 'white', 'grey', 'red');
         this.elem.classList.add('ego');
         this.elem.id = 'me';
         this.nesw = 1;
         this.setDirection(Sprite.OUT);
+
+        let wearing = document.createElement('span');
+        wearing.className = 'wearing';
+        wearing.innerHTML = '';
+        
+        // let left;
+        // if (this.x > 800) {
+        //   left = -width + 40;
+        // } else if (this.x < 100) {
+        //   left = -10;
+        // } else {
+        //   left = -(width / 2);
+        // }
+        
+        //bubble.style.width = width + 'px';
+        //bubble.style.left = left + 'px';
+        
+        let elem = this.elem;
+        elem.appendChild(wearing);
     }
   
     /**

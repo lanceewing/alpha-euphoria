@@ -144,7 +144,13 @@ $.Logic = {
             break;
             
           case 'me':
-            $.ego.say("I'm Pip Wilco, the Alpha Euphoria maintenance engineer.", 250);
+            $.ego.say("I'm Pip Wilco, the Alpha Euphoria maintenance engineer.", 250, function() {
+              if ($.ego.elem.classList.contains('mask')) {
+                $.ego.say("I'm wearing a breathing mask.", 250);
+              } else {
+                $.Game.userInput = true;
+              }
+            });
             break;
 
           case 'sign':

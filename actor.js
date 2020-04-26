@@ -87,18 +87,6 @@ class Actor extends Sprite {
       let elem = this.elem;
       elem.appendChild(bubble);
       elem.classList.add('speech');
-
-      // // TODO: Remove. Just playing around with speech API.
-      // let sentences = text.split(".");
-      // for (let i = 0; i < sentences.length; i++) {
-      //   let sentence = sentences[i];
-      //   let audio = new SpeechSynthesisUtterance(sentence);
-      //   var voices = window.speechSynthesis.getVoices();
-      //   audio.voice = voices.filter(function(voice) { return voice.name.includes('David'); })[0];  // Hazel, Zira
-      //   audio.pitch = 0;
-      //   audio.rate = 1;
-      //   window.speechSynthesis.speak(audio);
-      // }
       
       let closeBubbleTO = null;
       let closeBubbleFn = function(e) {
