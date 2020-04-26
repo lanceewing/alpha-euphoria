@@ -134,7 +134,7 @@ $.Game = {
       // [62, 1, 'green_key', 18, 3, 455, 540, null, true],
 
       [19, 2, 'cupboard', 110, 80, 900, 400, null, false],
-      [19, 1, 'mask', 40, 30, 930, 386, null, true],
+      [19, 1, 'breathing_mask', 40, 30, 930, 386, null, true],
 
 
     ],
@@ -778,7 +778,7 @@ $.Game = {
           // If this is not a unique object, then we set a class.
           obj.elem.classList.add(prop[2]);
         }
-        obj.elem.dataset.name = prop[2];
+        obj.elem.dataset.name = prop[2].replace('_',' ');
 
         obj.propData = prop;
         obj.add();

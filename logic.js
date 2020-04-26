@@ -109,41 +109,20 @@ $.Logic = {
             $.ego.say("It is an automatic door.", 250);
             break;
 
-          case 'mist':
-            if ($.Game.year == 2030) {
-              $.ego.say("The mist is glowing green. It looks poluted.", 250);
+          case 'floor':
+            if (($.Game.level != 4) || ($.Game.flags.gasLeakFixed)) {
+              if ($.screenWrap.classList.contains('deck')) {
+                $.ego.say("The floor is a shiny bluish colour.", 250);
+              } else {
+                $.ego.say("It is covered in red carpet.", 250);
+              }
             } else {
-              $.ego.say("The mist is white, and clean.", 250);
+              $.ego.say("A poisonous gas fills the room.", 250);
             }
-            break;
-
-          case 'backpack':
-            $.ego.say("Exactly what I need for carrying more things.", 300);
-            break;
-
-          case 'touch of death':
-            $.ego.say("The label reads 'Aim, fire, instant death!'", 250, function() {
-              $.ego.say("How morbid.", 140);
-            });
-            break;
-
-          case 'black key':
-            $.ego.say("It looks vaguely familiar.", 250);
             break;
             
           case 'me':
-            $.ego.say("I look like the Grim Reaper. Is that who I am?", 200);
-            break;
-            
-          case 'reaper':
-            $.ego.say("He looks like me but older.", 270, function() {
-              if ($.roomData[12]) {
-                $.ego.say("I think he's fully dead now.", 270);
-              }
-              else {
-                $.Game.userInput = true;
-              }
-            });
+            $.ego.say("I'm Pip Wilco, the Alpha Euphoria maintenance engineer.", 250);
             break;
 
           case 'sign':
@@ -153,8 +132,8 @@ $.Logic = {
                 "'", 250);
             break;
 
-          case 'crossing':
-            $.ego.say("A safe way to cross the street, even for the Reaper.", 200);
+          case 'breathing mask':
+            $.ego.say("Standard issue breathing mask with built in air canister.", 250);
             break;
             
           default:

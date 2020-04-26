@@ -1045,19 +1045,19 @@ span {
   transform: rotateY(170deg);
   box-shadow: none;
 }
-.cupboard.open ~ #mask {
+.cupboard.open ~ #breathing_mask {
   z-index: 401;
   filter: brightness(1.0);
   opacity: 1;
 }
-#mask {
+#breathing_mask {
   z-index: 399;
   transition: z-index 1000ms, filter 1000ms, opacity 1000ms;
   filter: brightness(0.0);
   transform: rotate3d(0, 0, 0, 0deg);
   opacity: 0;
 }
-#mask:before {
+#breathing_mask:before {
   content: '\1f93f';
   font-size: 26px;
   position: absolute;
