@@ -10,6 +10,12 @@ $.Logic = {
     switch (verb) {
       case 'Pull':
         switch (thing) {
+          case 'pod':
+            $.ego.moveTo(e.target.offsetLeft + (e.target.offsetWidth / 2), $.ego.z, function() {
+              $.ego.say("It won't budge.", 230);
+            });
+            break;
+
           default:
             $.ego.say("I can't pull that.", 230);
             break;
@@ -18,6 +24,12 @@ $.Logic = {
 
       case 'Push':
         switch (thing) {
+          case 'pod':
+            $.ego.moveTo(e.target.offsetLeft + (e.target.offsetWidth / 2), $.ego.z, function() {
+              $.ego.say("It won't budge.", 230);
+            });
+            break;
+
           default:
             $.ego.say("I can't push that.", 230);
             break;
@@ -109,6 +121,16 @@ $.Logic = {
             $.ego.say("It is an automatic door.", 250);
             break;
 
+          case 'pod':
+            $.ego.say("It's a cryosleep chamber containg one of my crew members.", 300, function() {
+              if (e.target.classList.contains('open')) {
+                $.ego.say("Some fool has opened the door already.", 250);
+              } else {
+                $.Game.userInput = true;
+              }
+            });
+            break;
+
           case 'floor':
             if (($.Game.level != 4) || ($.Game.flags.gasLeakFixed)) {
               if ($.screenWrap.classList.contains('deck')) {
@@ -154,66 +176,13 @@ $.Logic = {
         break;
         
       case 'Talk to':
-        switch (thing) {
-          case 'reaper':
-            if ($.roomData[12]) {
-              $.ego.say("My spirit... I mean his spirit, has departed now... unfortunately.", 300);
-            }
-            else {
-              let ghost = new Ghost(50);
-              ghost.elem.style.opacity = 0.0;
-              ghost.add();
-              ghost.setPosition($.reaper.x, 0, 530);
-              ghost.setDirection(Sprite.OUT);
-              ghost.elem.style.transition = 'opacity 0.5s';
-              ghost.elem.style.opacity = 0.3;
-
-              ghost.say("Please, help me!", 200, function() {
-                $.ego.say("Who are you?", 170, function() {
-                  ghost.say("I am you, from the future.", 200, function() {
-                    ghost.say("Five years ago, we got sick. Our kind call it The Death.", 300, function() {
-                      ghost.say("Our father always told us to stay indoors when we got The Death.", 300, function() {
-                        ghost.say("We should have listened to him!", 300, function() {
-                          ghost.say("Instead we went outside, and all the humans caught The Death!", 300, function() {
-                            ghost.say("For us, The Death is harmless, like a cold. For them it meant death.", 350, function() {
-                              $.ego.say("So, you are me?", 170, function() {
-                                ghost.say("Yes! And in the far future, we build a time machine to go back...", 300, function() {
-                                  ghost.say("...and stop ourself from leaving our apartment.", 300, function() {
-                                    ghost.say("But I failed. I didn't come back far enough, and now I'm dead.", 300, function() {
-                                      $.ego.say("How did you die?", 170, function() {
-                                        ghost.say("It doesn't matter. Its up to you now, to go back to 2025 and stop us.", 350, function() {
-                                          ghost.say("If you stop us leaving our room, everyone else will come Back to Life.", 300, function() {
-                                            ghost.say("I'm fading now. I'll be gone...  forever...  Good luck.", 300, function() {
-                                              ghost.elem.style.opacity = 0.0;
-                                              ghost.elem.style.display = 'none';
-                                              $.Game.userInput = true;
-                                              $.roomData[12] = true;
-                                              $.Game.addToScore(15);
-                                            });
-                                          });
-                                        });
-                                      });
-                                    });
-                                  });
-                                });
-                              });
-                            });
-                          });
-                        });
-                      });
-                    }); 
-                  });
-                });
-              });
-            }
-            break;
-            
+        switch (thing) {          
           case 'me':
             $.ego.say("Isn't that what I'm doing?", 150);
             break;
 
-          case 'ghost':
-            $.ego.say("Woooooo!!!", 150);
+          case 'pod':
+            $.ego.say("They are in cryosleep, so can't talk back.", 250);
             break;
             
           default:
@@ -240,14 +209,19 @@ $.Logic = {
             break;
 
           case 'pod':
-            // Walk to be in front of the pod
-            $.ego.moveTo(e.target.offsetLeft + (e.target.offsetWidth / 2), $.ego.z, function() {
-              if (e.target.classList.contains('open')) {
-                $.ego.say("The pod is already open.", 230);
-              } else {
-                e.target.classList.add('open');
-              }
-            });
+            if (!$.Game.flags.podWarning) {
+              $.ego.say("Are you sure? I think that is too dangerous at present.", 250);
+              $.Game.flags.podWarning = true;
+            } else {
+              // Walk to be in front of the pod
+              $.ego.moveTo(e.target.offsetLeft + (e.target.offsetWidth / 2), $.ego.z, function() {
+                if (e.target.classList.contains('open')) {
+                  $.ego.say("The pod is already open.", 230);
+                } else {
+                  e.target.classList.add('open');
+                }
+              });
+            }
             break;
             
           case 'door':

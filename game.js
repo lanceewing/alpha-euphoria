@@ -120,6 +120,7 @@ $.Game = {
     flags: {
       'gasLeakFixed' : false,
       'powerFixed' : false,
+      'podWarning' : false,
     },
 
     /**
