@@ -448,6 +448,34 @@ span {
   display: none;
 }
 
+#control_panel {
+  /* Hack required for Webkit. Firefox doesn't need this. */
+  transform: rotate3d(0, 0, 0, 0deg);
+  width: 80px;
+  height: 50px;
+  left: 930px;
+  top: 100px;
+  border-style: outset;
+  border-width: 4px;
+  z-index: 8;
+  padding: 5px;
+  background-color: #050594;
+  display: none;
+}
+#button {
+  transform: rotate3d(0, 0, 0, 0deg);
+  width: 24px;
+  height: 20px;
+  background-color: white;
+  left: 959px;
+  top: 115px;
+  z-index: 9;
+  display: none;
+}
+.room27 #button, .room27 #control_panel, .room35 #button, .room35 #control_panel {
+  display: block;
+}
+
 /* ELEVATOR */
 .deck #elevator_sign, .hallway.side0 #elevator_sign, .hallway.side2 #elevator_sign, .hallway.side3 #elevator_sign {
   display: none;

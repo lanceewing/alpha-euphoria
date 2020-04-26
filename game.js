@@ -360,7 +360,7 @@ $.Game = {
       
       // Set the room back to the start, and clear the object map.
       this.objs = [];
-      this.room = 7;//23;// 19; // 17; //21; //17;
+      this.room = 35;//7;//23;// 19; // 17; //21; //17;
       
       // Starting inventory.
       this.getItem('pod remote');
