@@ -76,6 +76,7 @@ $.Logic = {
                     window.speechSynthesis.speak(audio);
                     $.Game.addToScore(15);
                     $.Game.userInput = true;
+                    $.Game.fadeOut($.mist);
                   });
                 });
               }
@@ -95,8 +96,6 @@ $.Logic = {
                     window.speechSynthesis.speak(audio);
                     $.Game.addToScore(15);
                     $.Game.userInput = true;
-                    $.Game.fadeOut($.mist);
-                    //$.mist.style.display = none;
                   });
                 });
               }
