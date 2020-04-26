@@ -123,6 +123,8 @@ $.Game = {
       'podWarning' : false,
       'putOnMask' : false,
       'cupboardUnlocked' : false,
+      'notePoints' : false,
+      'openedCupboard' : false,
     },
 
     /**
@@ -589,7 +591,7 @@ $.Game = {
      */
     addToScore: function(points) {
       this.score += points;
-      $.score.innerHTML = '' + this.score + ' of 150';
+      $.score.innerHTML = '' + this.score + ' of 135';
     },
     
     /**

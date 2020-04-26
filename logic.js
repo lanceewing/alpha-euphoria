@@ -37,6 +37,7 @@ $.Logic = {
                   pod.classList.add('open');
                 }
               }
+              $.Game.addToScore(15);
               $.ego.say('The pods are opening...', 250, function() {
                 $.Game.userInput = false;
                 setTimeout(function() {
@@ -233,7 +234,13 @@ $.Logic = {
             $.ego.say("It's a maintence mission briefing:", 200, function() {
               $.ego.say("\"Alpha Euphoria has sustained damage due to asteroid collision\".", 300, function() {
                 $.ego.say("\"Fix the gas leak on level 4 and power failure on level 2\".", 300, function() {
-                  $.ego.say("\"It will then be safe to wake your crew mates\".", 250);
+                  $.ego.say("\"It will then be safe to wake your crew mates\".", 250, function() {
+                    if (!$.Game.flags.notePoints) {
+                      $.Game.addToScore(15);
+                      $.Game.flags.notePoints = true;
+                    }
+                    $.Game.userInput = true;
+                  });
                 });
               });
             });
@@ -341,6 +348,10 @@ $.Logic = {
               } else if (e.target.classList.contains('open')) {
                 $.ego.say("The cupboard is already open.", 230);
               } else {
+                if (!$.Game.flags.openedCupboard) {
+                  $.Game.addToScore(15);
+                  $.Game.flags.openedCupboard = true;
+                }
                 e.target.classList.add('open');
               }
             });
@@ -468,6 +479,7 @@ $.Logic = {
                         pod.classList.add('open');
                       }
                     }
+                    $.Game.addToScore(15);
                     $.ego.say('The pods are opening...', 250, function() {
                       $.Game.userInput = false;
                       setTimeout(function() {
