@@ -30,8 +30,26 @@ $.Logic = {
                 $.ego.say("I need to fix the gas leak on level 4, and the power failure on level 2.", 350);
               });
             } else {
-              // TODO: You've won!!
-
+              let pods = document.querySelectorAll('.pod');
+              for (let i=0; i<pods.length; i++) {
+                let pod = pods[i];
+                if (pod) {
+                  pod.classList.add('open');
+                }
+              }
+              $.ego.say('The pods are opening...', 250, function() {
+                $.Game.userInput = false;
+                setTimeout(function() {
+                  $.ego.elem.style.opacity = 0.0;
+                  for (let i=0; i<$.Game.objs.length; i++) {
+                    $.Game.objs[i].remove();
+                  }
+                  $.Game.objs = [];
+                  $.wrap.style.cursor = 'crosshair';
+                  $.Game.fadeOut($.wrap);
+                  $.Game.gameOver("You've Won!!");
+                }, 3000);
+              });
             }
             break;
 
@@ -444,8 +462,26 @@ $.Logic = {
                       $.ego.say("I need to fix the gas leak on level 4, and the power failure on level 2.", 350);
                     });
                   } else {
-                    // TODO: You've won!!
-      
+                    let pods = document.querySelectorAll('.pod');
+                    for (let i=0; i<pods.length; i++) {
+                      let pod = pods[i];
+                      if (pod) {
+                        pod.classList.add('open');
+                      }
+                    }
+                    $.ego.say('The pods are opening...', 250, function() {
+                      $.Game.userInput = false;
+                      setTimeout(function() {
+                        $.ego.elem.style.opacity = 0.0;
+                        for (let i=0; i<$.Game.objs.length; i++) {
+                          $.Game.objs[i].remove();
+                        }
+                        $.Game.objs = [];
+                        $.wrap.style.cursor = 'crosshair';
+                        $.Game.fadeOut($.wrap);
+                        $.Game.gameOver("You've Won!!");
+                      }, 3000);
+                    });
                   }
                   break;
                 
