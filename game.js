@@ -133,11 +133,10 @@ $.Game = {
       // Other potential settings (not currently used): zindex, colour
       // types: 0 = actor, 1 = item, 2 = prop
 
-      // [62, 1, 'green_key', 18, 3, 455, 540, null, true],
-
       [19, 2, 'cupboard', 110, 80, 900, 400, null, false],
       [19, 1, 'breathing_mask', 40, 30, 930, 386, null, true],
 
+      [23, 1, 'green_key', 18, 3, 420, 535, null, true],
 
     ],
     
