@@ -97,7 +97,9 @@ class Actor extends Sprite {
         }
         // Remove the speech bubble.
         elem.classList.remove('speech');
-        elem.removeChild(bubble);
+        if (elem.contains(bubble)) {
+          elem.removeChild(bubble);
+        }
 
         if (next) {
           setTimeout(next, 200);

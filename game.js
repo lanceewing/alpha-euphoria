@@ -285,6 +285,7 @@ $.Game = {
      * 
      */
     gameOver: function(msg) {
+      this._gameOver = true;
       this.userInput = true;
       this.fadeOut($.screenWrap);
       if (msg) {
@@ -305,15 +306,6 @@ $.Game = {
             $.Game.init();
             $.Game.loop();
           }, 500);
-
-
-          // TODO: Intro song will be DIFFER1. NEW10 will be played after the drama starts. 
-          // TODO: Pre-buffer time will avoid jerky playback.
-          // TODO: Starting to prebuffer songs during the "Click to play" but before starting to use audio might work.
-          // TODO: load function supports a callback function for when the processing has finished.
-          // TODO: Sample rate can be set, which might give us better performance for worse quality.
-          // TODO: Do we have a way of detecting when the realtime playback finishes?
-          // TODO: Player can be paused.
 
           // Starting playing ROL file in the background.
           fetch('./songs/NEW10.ROL').then(function(res){
@@ -383,26 +375,8 @@ $.Game = {
       // Add pods to all the rooms that have them.
       this.addPodsToRooms(6, 7, 8, 13, 14, 15, 16, 22, 23, 24, 29, 30, 31, 32, 38, 39, 40);
 
-      // Starting inventory.
-      //this.getItem('keycard');
-
-      
       // Enter the starting room.
       this.newRoom();
-      
-      // // Intro text.
-      // this.userInput = false;
-      // $.ego.say('Where am I?', 140, function() {
-      //   $.ego.moveTo(500, 600, function() {
-      //     $.ego.say('Who am I?', 140, function() {
-      //       $.ego.moveTo(500, 640, function() {
-      //         $.ego.say('And why is there a body over there that looks like me?', 300, function() {
-      //           $.Game.userInput = true;
-      //         });
-      //       });
-      //     });
-      //   });
-      // });
       
       // Fade in the whole screen at the start.
       this.fadeIn($.wrap);
@@ -477,6 +451,25 @@ $.Game = {
           window.speechSynthesis.speak(audio);
         }
         this.lastTimeString = currentTimeString;
+      }
+
+      // Check for gas and not wearing mask.
+      if ((this.level == 4) && $.Game.userInput && !this.flags.gasLeakFixed && !$.ego.elem.classList.contains('mask')) {
+        // Death by poisonous gas.
+        $.ego.say('Ahhh! The gas is killing me!', 250, function() {
+          $.Game.userInput = false;
+          $.ego.elem.classList.add('death');
+          setTimeout(function() {
+            $.ego.elem.style.opacity = 0.0;
+            for (let i=0; i<$.Game.objs.length; i++) {
+              $.Game.objs[i].remove();
+            }
+            $.Game.objs = [];
+            $.wrap.style.cursor = 'crosshair';
+            $.Game.fadeOut($.wrap);
+            $.Game.gameOver("You died!!");
+          }, 3000);
+        });
       }
 
       // If after updating all objects, the room that Ego says it is in is different
@@ -931,6 +924,11 @@ $.Game = {
       // Remove any previous transition.
       elem.style.transition = 'opacity 0.5s';
       elem.style.opacity = 1.0;
+      setTimeout(function() {
+        // This is so that other css styles can set transitions on the element
+        // while we're not fading in.
+        elem.style.removeProperty('transition');
+      }, 700);
     },
     
     /**
