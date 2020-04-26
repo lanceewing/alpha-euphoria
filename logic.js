@@ -37,6 +37,27 @@ $.Logic = {
         break;
     
       case 'Walk to':
+        if (($.Game.level == 2) && (!$.Game.flags.powerFixed) && (thing != 'elevator')) {
+          // Death by darkness
+          $.Game.userInput = false;
+          $.ego.moveTo($.ego.x - 100, $.ego.z, function() {
+            $.ego.say("Ahhh! I'm tripping in the darkness!", 250, function() {
+              $.Game.userInput = false;
+              $.ego.elem.classList.add('death');
+              setTimeout(function() {
+                $.ego.elem.style.opacity = 0.0;
+                for (let i=0; i<$.Game.objs.length; i++) {
+                  $.Game.objs[i].remove();
+                }
+                $.Game.objs = [];
+                $.wrap.style.cursor = 'crosshair';
+                $.Game.fadeOut($.wrap);
+                $.Game.gameOver("You died!!");
+              }, 3000);
+            })
+          });
+          break;
+        }
         switch (thing) {
           case 'door':
             $.Game.userInput = false;
