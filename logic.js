@@ -131,6 +131,16 @@ $.Logic = {
             });
             break;
 
+          case 'window':
+            $.ego.say("Out the window, I see the vastness of space.", 250, function() {
+              if ($.screenWrap.classList.contains('side1')) {
+                $.ego.say("Nearby I can see the planet of Euphoria, our soon to be new home.", 300);
+              } else {
+                $.Game.userInput = true;
+              }
+            });
+            break;
+
           case 'floor':
             if (($.Game.level != 4) || ($.Game.flags.gasLeakFixed)) {
               if ($.screenWrap.classList.contains('deck')) {
@@ -232,6 +242,12 @@ $.Logic = {
             
           case 'door':
             $.ego.say("Try walking there.", 230);
+            break;
+
+          case 'window':
+            $.ego.say("It doesn't open.", 230, function() {
+              $.ego.say("Even if it did, I don't think that would be wise.", 300);
+            });
             break;
             
           default:
