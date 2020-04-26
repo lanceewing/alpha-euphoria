@@ -364,6 +364,7 @@ $.Game = {
       
       // Starting inventory.
       this.getItem('pod remote');
+      this.getItem('note');
 
       // Create Ego (the main character) and add it to the screen.
       $.ego = new Ego();

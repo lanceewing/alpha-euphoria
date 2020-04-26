@@ -157,6 +157,16 @@ $.Logic = {
             $.ego.say("It is an automatic door.", 250);
             break;
 
+          case 'note':
+            $.ego.say("It's a maintence mission briefing:", 200, function() {
+              $.ego.say("\"Alpha Euphoria has sustained damage due to asteroid collision\".", 300, function() {
+                $.ego.say("\"Fix the gas leak on level 4 and power failure on level 2\".", 300, function() {
+                  $.ego.say("\"It will then be safe to wake your crew mates\".", 250);
+                });
+              });
+            });
+            break;
+
           case 'pod remote':
             $.ego.say("It's a remote control for safely opening all the cryosleep pods.", 300);
             break;
@@ -392,6 +402,9 @@ $.Logic = {
               }
             }
             if (thing2 == 'breathing mask') {
+              $.ego.say("Nothing happened.", 220);
+            }
+            if (thing2 == 'note') {
               $.ego.say("Nothing happened.", 220);
             }
           }
