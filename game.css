@@ -1063,3 +1063,25 @@ span {
   position: absolute;
   bottom: -2px;
 }
+
+#me.mask:before {
+  content: '\1f93f';
+  font-size: 34px;
+  position: absolute;
+  top: 6px;
+  width: 47px;
+}
+#me.mask.facing4:before {
+  left: 3px;
+}
+#me.mask.facing1:before {
+  left: -12px;
+  clip: rect(0px, 47px, 47px, 18px);
+}
+#me.mask.facing2:before {
+  left: 21px;
+  clip: rect(0px, 26px, 47px, 0px);
+}
+#me.mask.facing3:before {
+  display: none;
+}

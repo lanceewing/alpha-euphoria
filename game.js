@@ -121,6 +121,7 @@ $.Game = {
       'gasLeakFixed' : false,
       'powerFixed' : false,
       'podWarning' : false,
+      'putOnMask' : false,
     },
 
     /**

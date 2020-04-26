@@ -388,6 +388,10 @@ $.Logic = {
               if ($.ego.elem.classList.contains('mask')) {
                 $.ego.say("I'm already wearing it.", 230);
               } else {
+                if (!$.Game.flags.putOnMask) {
+                  $.Game.addToScore(15);
+                  $.Game.flags.putOnMask = true;
+                }
                 $.ego.elem.classList.add('mask');
               }
             } else {
