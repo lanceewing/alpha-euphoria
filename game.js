@@ -172,8 +172,6 @@ $.Game = {
       $.scaleY = window.innerHeight / $.wrap.offsetHeight;
       $.wrap.style.transform = "scale3d(" + $.scaleX + ", " + $.scaleY + ", 1)";
       $.wrap.style.marginLeft = ((window.innerWidth - 960) / 2) + "px";    // Width of the game screen is 960.
-      // TODO: Decide whether this is needed.
-      //$.screen.style.width = (window.innerWidth > 960? window.innerWidth : 960) + "px";
     },
 
     /**
@@ -476,6 +474,27 @@ $.Game = {
         });
       }
 
+      // Check if game has timed out.
+      if (this.time > 600000) {
+        // Death by time out.
+        this.shakeScreen();
+        $.ego.say('Ahhh! The space ship is exploding!', 300, function() {
+          $.Game.shakeScreen();
+          $.Game.userInput = false;
+          setTimeout(function() {
+            $.Game.shakeScreen();
+            $.ego.elem.style.opacity = 0.0;
+            for (let i=0; i<$.Game.objs.length; i++) {
+              $.Game.objs[i].remove();
+            }
+            $.Game.objs = [];
+            $.wrap.style.cursor = 'crosshair';
+            $.Game.fadeOut($.wrap);
+            $.Game.gameOver("You died!!");
+          }, 3000);
+        });
+      }
+
       // If after updating all objects, the room that Ego says it is in is different
       // than what it was previously in, then we trigger entry in to the new room.
       if ($.ego.room != this.room) {
@@ -500,7 +519,7 @@ $.Game = {
      * @returns {String} The time as mm:ss
      */
     buildTimeString: function(numOfMillis) {
-      var timeLeft = 3600 -  Math.floor(numOfMillis / 1000);
+      var timeLeft = 600 -  Math.floor(numOfMillis / 1000);
       var minutes = Math.floor(timeLeft / 60);
       var seconds = timeLeft % 60;
       return (('00' + minutes).substr(-2) + ':' + ('00' + seconds).substr(-2));
