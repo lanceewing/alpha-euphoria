@@ -1,5 +1,5 @@
 # Alpha Euphoria
-Alpha Euphoria is a futuristic sci-fi animated adventure game written for the 2020 gamedev.js contest. 
+Alpha Euphoria is a futuristic sci-fi animated adventure game written for the [2020 gamedev.js contest](https://lanceewing.itch.io/alpha-euphoria). 
 
 ![Screenshot](img/starting_screen.jpg)
 
@@ -28,28 +28,28 @@ Another goal for this project was as a demo of using the doomjs opl3 JS library.
 
 **Original Background Music Composed By:** Lance Ewing
 
-**Sound Effect Library:** JSFXR by Markus Neubrand
+**Sound Effect Library:** [JSFXR](https://github.com/mneubrand/jsfxr) by Markus Neubrand
 
-**Music Synthesis Library:** doomjs/opl3 by DOOM.js
+**Music Synthesis Library:** [doomjs/opl3](https://github.com/doomjs/opl3) by DOOM.js
 
 **Adlib ROL Format Handler (for doomjs/opl3):** by Lance Ewing
 
-**Space Age Font:** by Justin Callaghan
+**Space Age:** [font](http://mickeyavenue.com/fonts/spaceage/) by Justin Callaghan
 
 # Codepen Credits
 This game uses, and indeed showcases, techniques from the following pens:
 
-**"Brushed Metal"** pen by Simon Lüthi (@simurai)
+**"Brushed Metal"** [pen](https://codepen.io/simurai/pen/DwJdq) by Simon Lüthi (@simurai)
 
-**"Shake"** pen by Sarah Drasner (@sdras)
+**"Shake"** [pen](https://codepen.io/sdras/pen/aOgMON) by Sarah Drasner (@sdras)
 
-**"Elevator Grid"** pen by Rafael Castrocouto (@rafaelcastrocouto)
+**"Elevator Grid"** [pen](https://codepen.io/rafaelcastrocouto/pen/xbKzrx) by Rafael Castrocouto (@rafaelcastrocouto)
 
-**"E for Elevator"** pen by Maxime Rabot (@maximerabot)
+**"E for Elevator"** [pen](https://codepen.io/maximerabot/pen/gbWmqJ) by Maxime Rabot (@maximerabot)
 
-**"Saturn"** pen designed by Davide Sandonà (@Davide_sd)
+**"Saturn"** [pen](https://codepen.io/Davide_sd/pen/zhAxB) designed by Davide Sandonà (@Davide_sd)
 
-**"Simple canvas star field"** pen by Clinton Montague (@iblamefish)
+**"Simple canvas star field"** [pen](https://codepen.io/iblamefish/pen/xgefG) by Clinton Montague (@iblamefish)
 
 Thank you very much to the authors of those pens, particularly to Simon "simurai" for the "Brushed Metal" technique that is used extensively within the game, such as for the status bar at the top, the command buttons and inventory at the bottom of the screen, and even within the game rooms for the spaceship walls and elevator buttons. I think it adds very much to the spaceship aesthetic, so I applied it liberally.
 
